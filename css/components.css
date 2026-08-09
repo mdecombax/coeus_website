@@ -1,0 +1,682 @@
+/* ==========================================================================
+   Coeus — Composants transverses : boutons, glass, header, footer, reveal
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Boutons
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7em;
+  padding: 0.95em 1.7em;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-button);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.btn__arrow {
+  flex: none;
+  transition: transform var(--dur-mid) var(--ease-out);
+}
+.btn:hover .btn__arrow {
+  transform: translateX(3px);
+}
+
+.btn--primary {
+  background: var(--coeus-blue);
+  color: var(--arctic-white);
+  box-shadow: 0 10px 26px rgba(var(--rgb-coeus-blue), 0.28);
+}
+.btn--primary:hover {
+  background: var(--coeus-blue-light);
+  color: var(--arctic-white);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(var(--rgb-coeus-blue), 0.34);
+}
+.btn--primary:active {
+  transform: translateY(0);
+  background: var(--coeus-blue-dark);
+}
+
+.btn--secondary {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border: var(--glass-border);
+  color: var(--coeus-blue);
+}
+.btn--secondary:hover {
+  background: var(--glass-bg-strong);
+  border: var(--glass-border-hover);
+  color: var(--coeus-blue);
+  transform: translateY(-2px);
+}
+.btn--secondary:active {
+  transform: translateY(0);
+}
+
+.btn--accent {
+  background: var(--signal-orange);
+  color: var(--midnight-navy);
+  box-shadow: 0 10px 26px rgba(var(--rgb-orange), 0.3);
+}
+.btn--accent:hover {
+  background: var(--orange-dark);
+  color: var(--arctic-white);
+  transform: translateY(-2px);
+}
+
+.btn--ghost {
+  padding-inline: 0;
+  color: var(--coeus-blue);
+  font-weight: 500;
+}
+.btn--ghost:hover {
+  color: var(--coeus-blue-light);
+}
+
+.btn[disabled],
+.btn[aria-disabled='true'] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+/* CTA circulaire WhatsApp — symbole du dragon (Guía §5) */
+/* Disque clair plutôt que plein bleu : en négatif, les contre-formes de la
+   tête de dragon (l'œil notamment) s'inversent et le symbole devient illisible
+   à 46 px. Le dragon reste donc en Deep Blue sur fond glass. */
+.btn-dragon {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex: none;
+  border-radius: var(--radius-pill);
+  background: var(--glass-bg-strong);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(var(--rgb-coeus-blue), 0.22);
+  box-shadow: 0 8px 22px rgba(var(--rgb-navy), 0.08);
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+.btn-dragon img {
+  width: 30px;
+  height: auto;
+  /* Recentre optiquement la tête dans le disque : le museau tire vers la droite. */
+  margin-left: -1px;
+  pointer-events: none;
+}
+.btn-dragon:hover {
+  border-color: rgba(var(--rgb-coeus-blue), 0.5);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 28px rgba(var(--rgb-coeus-blue), 0.22);
+}
+
+/* --------------------------------------------------------------------------
+   Surfaces glass
+   -------------------------------------------------------------------------- */
+
+.glass {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border: var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--glass-shadow);
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: var(--z-header);
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition:
+    height var(--dur-mid) var(--ease-out),
+    background-color var(--dur-mid) var(--ease-out),
+    border-color var(--dur-mid) var(--ease-out),
+    box-shadow var(--dur-mid) var(--ease-out);
+}
+.header.is-scrolled {
+  height: calc(var(--header-h) - 12px);
+  background: rgba(255, 255, 255, 0.86);
+  border-bottom-color: rgba(var(--rgb-coeus-blue), 0.12);
+  box-shadow: 0 6px 26px rgba(var(--rgb-navy), 0.06);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  width: 100%;
+}
+
+.header__logo img {
+  height: 34px;
+  width: auto;
+  transition: height var(--dur-mid) var(--ease-out);
+}
+.header.is-scrolled .header__logo img {
+  height: 29px;
+}
+
+/* Navigation principale */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+.nav__item {
+  position: relative;
+}
+
+.nav__link,
+.nav__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.65em 0.9em;
+  border-radius: var(--radius-pill);
+  color: var(--midnight-navy);
+  font-size: var(--fs-button);
+  font-weight: 500;
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+}
+.nav__link:hover,
+.nav__trigger:hover,
+.nav__item.is-open .nav__trigger {
+  color: var(--coeus-blue);
+  background: rgba(var(--rgb-coeus-blue), 0.07);
+}
+
+.nav__caret {
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.nav__item.is-open .nav__caret {
+  transform: rotate(180deg);
+}
+
+/* Dropdown */
+/* Fond opaque, volontairement : le header porte déjà un `backdrop-filter`, ce
+   qui en fait un backdrop root. Un `backdrop-filter` sur ce descendant ne voit
+   plus la page derrière et reste sans effet — un fond translucide laisserait
+   donc lire le texte de la page à travers le menu. La lisibilité prime ici, et
+   la Guía §1 réserve le glassmorphism aux usages où il apporte quelque chose. */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  min-width: 320px;
+  padding: var(--sp-1);
+  background: var(--arctic-white);
+  border: 1px solid rgba(var(--rgb-coeus-blue), 0.14);
+  border-radius: var(--radius);
+  box-shadow:
+    0 2px 6px rgba(var(--rgb-navy), 0.06),
+    0 18px 48px rgba(var(--rgb-navy), 0.16);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -8px);
+  /* `visibility` bascule instantanément à l'ouverture — sinon les liens restent
+     non focusables pendant la durée du fondu et Tab saute le panneau — puis
+     attend la fin du fondu à la fermeture. */
+  transition:
+    opacity var(--dur-mid) var(--ease-out),
+    transform var(--dur-mid) var(--ease-out),
+    visibility 0s linear var(--dur-mid);
+}
+.nav__item.is-open .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+  transition:
+    opacity var(--dur-mid) var(--ease-out),
+    transform var(--dur-mid) var(--ease-out),
+    visibility 0s;
+}
+
+.dropdown__link {
+  display: block;
+  padding: 0.7em 0.85em;
+  border-radius: var(--radius-sm);
+  color: var(--midnight-navy);
+  font-size: var(--fs-small);
+  line-height: 1.4;
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+.dropdown__link:hover {
+  background: rgba(var(--rgb-coeus-blue), 0.08);
+  color: var(--coeus-blue);
+}
+.dropdown__link span {
+  display: block;
+  margin-top: 0.25em;
+  color: var(--graphite-gray);
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+/* Actions à droite */
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+.icon-link {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-pill);
+  color: var(--midnight-navy);
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+}
+.icon-link:hover {
+  color: var(--coeus-blue);
+  background: rgba(var(--rgb-coeus-blue), 0.08);
+}
+.icon-link[aria-disabled='true'] {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* Burger + drawer mobile */
+/* Flex column plutôt que grid : les rangées de grille s'étirent sur la hauteur
+   du bouton et l'écart réel entre les traits ne correspond plus à la
+   translation appliquée pour former la croix. */
+.burger {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-pill);
+}
+.burger span {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--midnight-navy);
+  transition: transform var(--dur-mid) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
+}
+/* 1.5 px de trait + 5 px de gap = 6.5 px d'écart centre à centre. */
+.burger.is-active span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.burger.is-active span:nth-child(2) {
+  opacity: 0;
+}
+.burger.is-active span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+.drawer {
+  position: fixed;
+  inset: var(--header-h) 0 0;
+  z-index: var(--z-drawer);
+  padding: var(--sp-3) var(--gutter) var(--sp-6);
+  background: rgba(255, 255, 255, 0.97);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px);
+  transition:
+    opacity var(--dur-mid) var(--ease-out),
+    transform var(--dur-mid) var(--ease-out),
+    visibility var(--dur-mid);
+}
+.drawer.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.drawer__section + .drawer__section {
+  border-top: 1px solid var(--soft-gray);
+}
+
+.drawer__toggle,
+.drawer__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.1rem 0;
+  color: var(--midnight-navy);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  text-align: left;
+}
+
+.drawer__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-mid) var(--ease-out);
+}
+.drawer__section.is-open .drawer__panel {
+  grid-template-rows: 1fr;
+}
+.drawer__panel > div {
+  overflow: hidden;
+}
+.drawer__panel a {
+  display: block;
+  padding: 0.6rem 0 0.6rem var(--sp-2);
+  color: var(--graphite-gray);
+  font-size: var(--fs-small);
+  border-left: 1px solid var(--soft-gray);
+}
+.drawer__panel a:hover {
+  color: var(--coeus-blue);
+  border-left-color: var(--coeus-blue);
+}
+
+.drawer__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+}
+
+@media (max-width: 1024px) {
+  .nav,
+  .header__actions .icon-link {
+    display: none;
+  }
+  .burger {
+    display: flex;
+  }
+}
+
+@media (min-width: 1025px) {
+  .drawer {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.footer {
+  padding-block: var(--sp-6) var(--sp-4);
+  background: var(--midnight-navy);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: var(--fs-small);
+}
+
+.footer__top {
+  display: grid;
+  grid-template-columns: minmax(240px, 1.4fr) repeat(4, minmax(140px, 1fr));
+  gap: var(--sp-4) var(--sp-3);
+  padding-bottom: var(--sp-5);
+}
+
+.footer__brand img {
+  height: 38px;
+  width: auto;
+  margin-bottom: var(--sp-2);
+}
+
+.footer__slogan {
+  color: var(--mist-blue);
+  font-size: var(--fs-small);
+  line-height: 1.6;
+  max-width: 30ch;
+}
+
+.footer__col h3 {
+  margin-bottom: var(--sp-2);
+  color: var(--arctic-white);
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+}
+
+.footer__col li + li {
+  margin-top: 0.55rem;
+}
+
+.footer__col a {
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.45;
+}
+.footer__col a:hover {
+  color: var(--arctic-white);
+}
+.footer__col a[aria-disabled='true'] {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  padding-top: var(--sp-3);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+.footer__legal a {
+  color: rgba(255, 255, 255, 0.5);
+}
+.footer__legal a:hover {
+  color: var(--arctic-white);
+}
+
+@media (max-width: 980px) {
+  .footer__top {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 520px) {
+  .footer__top {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Cartes de solution — partagées entre le Home et les pages Soluciones
+   -------------------------------------------------------------------------- */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: clamp(1rem, 0.6rem + 1.2vw, 1.75rem);
+}
+
+.cap-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: clamp(1.5rem, 1.1rem + 1.2vw, 2.25rem);
+  color: inherit;
+  transition:
+    transform var(--dur-mid) var(--ease-out),
+    box-shadow var(--dur-mid) var(--ease-out),
+    border-color var(--dur-mid) var(--ease-out);
+}
+.cap-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(var(--rgb-coeus-blue), 0.32);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+.cap-card__icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  background: rgba(var(--rgb-coeus-blue), 0.07);
+  color: var(--coeus-blue);
+  transition: background-color var(--dur-mid) var(--ease-out);
+}
+.cap-card:hover .cap-card__icon {
+  background: rgba(var(--rgb-coeus-blue), 0.13);
+}
+
+.cap-card__title {
+  color: var(--midnight-navy);
+  text-wrap: balance;
+}
+
+.cap-card__text {
+  flex: 1;
+  font-size: var(--fs-small);
+  line-height: 1.6;
+}
+
+.cap-card__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  color: var(--coeus-blue);
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+}
+.cap-card__more svg {
+  transition: transform var(--dur-mid) var(--ease-out);
+}
+.cap-card:hover .cap-card__more svg {
+  transform: translateX(4px);
+}
+
+/* --------------------------------------------------------------------------
+   Reveal au scroll (Guía §7 : fade + légère élévation, une seule fois)
+   -------------------------------------------------------------------------- */
+
+/* Le masquage initial n'est appliqué que si la classe `js` a été posée sur
+   <html> par le script inline du <head>. Sans JavaScript — ou si le module
+   échoue à se charger — le contenu reste visible au lieu de disparaître. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Scène symbolique : image + canvas de particules
+   -------------------------------------------------------------------------- */
+
+.symbol {
+  position: relative;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.symbol__img {
+  position: relative;
+  z-index: var(--z-content);
+  width: 100%;
+  height: auto;
+  will-change: transform;
+}
+
+.symbol__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-canvas);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Flottement lent et sans réaction au curseur : le symbole respire, il ne
+   suit rien. Amplitude 4–12 px, boucle 6–12 s (Guía §7). */
+.symbol--float .symbol__img {
+  animation: symbol-float var(--float-duration, 11s) var(--ease-in-out) infinite;
+}
+
+@keyframes symbol-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  33% {
+    transform: translate3d(3px, -9px, 0);
+  }
+  66% {
+    transform: translate3d(-3px, -4px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .symbol--float .symbol__img {
+    animation: none;
+  }
+}

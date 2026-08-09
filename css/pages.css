@@ -1,0 +1,673 @@
+/* ==========================================================================
+   Coeus — Pages internes
+   Soluciones · Nosotros · Socios Aliados · Recursos · Contacto · Legal · 404
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Hero de page
+   Plus compact que celui du Home : le contenu doit rester au-dessus de la
+   ligne de flottaison. Le champ de particules tourne ici sans image support.
+   -------------------------------------------------------------------------- */
+
+.page-hero {
+  position: relative;
+  padding-block: calc(var(--header-h) + clamp(3rem, 2rem + 5vw, 6rem))
+    clamp(3rem, 2rem + 4vw, 5rem);
+  overflow: hidden;
+  background:
+    radial-gradient(55% 60% at 82% 25%, rgba(var(--rgb-mist), 0.34) 0%, transparent 70%),
+    var(--surface-tint-soft);
+}
+
+.page-hero__particles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.page-hero__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.page-hero h1 {
+  max-width: 18ch;
+  margin-bottom: var(--sp-3);
+}
+
+.page-hero .lead {
+  max-width: 58ch;
+}
+
+.page-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+}
+
+/* Fil d'Ariane */
+.breadcrumb {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: var(--sp-3);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--graphite-gray);
+}
+.breadcrumb a {
+  color: var(--coeus-blue);
+}
+.breadcrumb li:not(:last-child)::after {
+  content: '/';
+  margin-left: 0.6rem;
+  opacity: 0.4;
+}
+.breadcrumb li {
+  display: flex;
+  align-items: center;
+}
+.breadcrumb [aria-current='page'] {
+  opacity: 0.7;
+}
+
+/* --------------------------------------------------------------------------
+   Bloc « ¿Qué hacemos? » — texte à gauche, encart glass à droite
+   -------------------------------------------------------------------------- */
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+}
+
+.split__lead {
+  margin-top: var(--sp-3);
+}
+
+.split__aside {
+  padding: clamp(1.75rem, 1.2rem + 1.5vw, 2.5rem);
+}
+
+.split__aside h3 {
+  margin-bottom: var(--sp-2);
+  color: var(--midnight-navy);
+}
+
+@media (max-width: 880px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Bénéfices — liste à puces personnalisées
+   -------------------------------------------------------------------------- */
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--sp-2) var(--sp-4);
+}
+
+.benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding-block: 0.7rem;
+  border-bottom: 1px solid var(--soft-gray);
+  font-size: var(--fs-small);
+  line-height: 1.55;
+}
+
+.benefits li::before {
+  content: '';
+  flex: none;
+  width: 7px;
+  height: 7px;
+  margin-top: 0.55em;
+  border-radius: 50%;
+  background: var(--signal-orange);
+  box-shadow: 0 0 0 3px rgba(var(--rgb-orange), 0.16);
+}
+
+/* --------------------------------------------------------------------------
+   Capacités — grille de pastilles glass
+   -------------------------------------------------------------------------- */
+
+.capability-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.capability-list li {
+  padding: 0.75em 1.25em;
+  border: var(--glass-border);
+  border-radius: var(--radius-pill);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  color: var(--midnight-navy);
+  font-size: var(--fs-small);
+  line-height: 1.2;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+.capability-list li:hover {
+  border-color: rgba(var(--rgb-coeus-blue), 0.34);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   Bande CTA de fin de page
+   -------------------------------------------------------------------------- */
+
+.cta-band {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(3.5rem, 2.5rem + 5vw, 6rem);
+  background:
+    radial-gradient(50% 100% at 50% 100%, rgba(var(--rgb-mist), 0.4) 0%, transparent 72%),
+    var(--surface-tint-soft);
+  text-align: center;
+}
+
+.cta-band__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.cta-band h2 {
+  max-width: 22ch;
+}
+
+/* --------------------------------------------------------------------------
+   Nosotros
+   -------------------------------------------------------------------------- */
+
+.story {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.75fr);
+  align-items: center;
+  gap: clamp(2rem, 1rem + 4vw, 5rem);
+}
+
+.story__text p + p {
+  margin-top: var(--sp-2);
+}
+
+.story__visual {
+  --float-duration: 13s;
+  max-width: 340px;
+  justify-self: center;
+}
+
+@media (max-width: 900px) {
+  .story {
+    grid-template-columns: 1fr;
+  }
+  .story__visual {
+    order: -1;
+    max-width: 240px;
+  }
+}
+
+/* Misión / Visión */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(1rem, 0.6rem + 1.2vw, 1.75rem);
+}
+
+.pillar {
+  padding: clamp(1.75rem, 1.2rem + 1.5vw, 2.5rem);
+}
+
+.pillar h3 {
+  margin-bottom: var(--sp-2);
+  color: var(--coeus-blue);
+}
+
+/* Principes — liste numérotée éditoriale */
+/* Deux colonnes maximum : à trois ou quatre, la cinquième conviction se
+   retrouve seule sur sa ligne et la liste perd son rythme. */
+.principles {
+  counter-reset: principle;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: 0 clamp(2rem, 1rem + 3vw, 4rem);
+  border-top: 1px solid var(--soft-gray);
+}
+
+.principles li {
+  counter-increment: principle;
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-2) var(--sp-3) 0;
+  border-bottom: 1px solid var(--soft-gray);
+  color: var(--midnight-navy);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+}
+
+.principles li::before {
+  content: '0' counter(principle);
+  flex: none;
+  color: var(--coeus-blue);
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--track-eyebrow);
+  opacity: 0.7;
+}
+
+/* Pourquoi Coeus — cartes compactes */
+.reasons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(1rem, 0.6rem + 1.2vw, 1.5rem);
+}
+
+.reason {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  padding: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--midnight-navy);
+}
+
+.reason svg {
+  flex: none;
+  margin-top: 0.15em;
+  color: var(--coeus-blue);
+}
+
+/* --------------------------------------------------------------------------
+   Socios aliados & Recursos — états vides
+   Aucun contenu inventé : on annonce ce qui arrive plutôt que de simuler.
+   -------------------------------------------------------------------------- */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  padding: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  border: 1px dashed rgba(var(--rgb-coeus-blue), 0.25);
+  border-radius: var(--radius);
+  background: rgba(var(--rgb-mist), 0.09);
+}
+
+.empty-state__label {
+  color: var(--coeus-blue);
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+}
+
+.empty-state p {
+  color: var(--graphite-gray);
+  font-size: var(--fs-small);
+  line-height: 1.6;
+}
+
+/* Sections ancrées de la page Recursos */
+.resource-section + .resource-section {
+  margin-top: clamp(3rem, 2rem + 4vw, 5rem);
+  padding-top: clamp(3rem, 2rem + 4vw, 5rem);
+  border-top: 1px solid var(--soft-gray);
+}
+
+.resource-section__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+}
+
+.resource-section__head h2 {
+  margin-bottom: 0.3rem;
+}
+
+.resource-section__head p {
+  color: var(--graphite-gray);
+  font-size: var(--fs-small);
+}
+
+/* --------------------------------------------------------------------------
+   Contacto
+   -------------------------------------------------------------------------- */
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
+  align-items: start;
+  gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+}
+
+@media (max-width: 940px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form {
+  padding: clamp(1.75rem, 1.2rem + 2vw, 3rem);
+}
+
+/* `align-items: end` aligne les champs par le bas : un label qui passe sur
+   deux lignes ne décale plus son input par rapport à celui d'à côté. */
+.form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: end;
+  gap: var(--sp-3) var(--sp-2);
+}
+
+.field--full {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 620px) {
+  .form__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.field label {
+  color: var(--midnight-navy);
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+}
+
+.field label .req {
+  color: var(--signal-orange-text);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 0.85em 1em;
+  border: 1px solid var(--soft-gray);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--midnight-navy);
+  font-size: var(--fs-small);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.field input:hover,
+.field textarea:hover {
+  border-color: var(--mist-blue);
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--coeus-blue);
+  box-shadow: 0 0 0 3px rgba(var(--rgb-coeus-blue), 0.14);
+}
+
+.field input[aria-invalid='true'],
+.field textarea[aria-invalid='true'] {
+  border-color: #c0392b;
+}
+
+.field__error {
+  min-height: 1.1em;
+  color: #a5301f;
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+
+/* Piège à robots : hors flux, jamais focusable, invisible aux lecteurs d'écran. */
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-top: var(--sp-3);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--graphite-gray);
+}
+
+.form__consent input {
+  flex: none;
+  width: 17px;
+  height: 17px;
+  margin-top: 0.15em;
+  accent-color: var(--coeus-blue);
+}
+
+.form__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+}
+
+/* Messages d'état — masqués tant qu'ils ne sont pas activés par form.js */
+.form__status {
+  display: none;
+  gap: 0.85rem;
+  align-items: flex-start;
+  padding: 1rem 1.15rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-small);
+  line-height: 1.55;
+}
+.form__status.is-visible {
+  display: flex;
+}
+.form__status--success {
+  background: rgba(var(--rgb-coeus-blue), 0.07);
+  border: 1px solid rgba(var(--rgb-coeus-blue), 0.22);
+  color: var(--midnight-navy);
+}
+.form__status--error {
+  background: rgba(192, 57, 43, 0.06);
+  border: 1px solid rgba(192, 57, 43, 0.28);
+  color: #8c2a1c;
+}
+.form__status strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-weight: 600;
+}
+
+.btn.is-loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* Coordonnées */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: clamp(1.75rem, 1.2rem + 1.5vw, 2.5rem);
+}
+
+.contact-info__item {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.contact-info__item svg {
+  flex: none;
+  margin-top: 0.2em;
+  color: var(--coeus-blue);
+}
+
+.contact-info__label {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: var(--graphite-gray);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+}
+
+.contact-info__value {
+  color: var(--midnight-navy);
+  font-size: var(--fs-small);
+  word-break: break-word;
+}
+a.contact-info__value:hover {
+  color: var(--coeus-blue);
+}
+
+.contact-info__socials {
+  display: flex;
+  gap: 0.5rem;
+  padding-top: var(--sp-1);
+  border-top: 1px solid var(--soft-gray);
+}
+
+/* --------------------------------------------------------------------------
+   Pages légales — colonne de texte étroite
+   -------------------------------------------------------------------------- */
+
+.legal h2 {
+  margin-top: var(--sp-5);
+  margin-bottom: var(--sp-2);
+  font-size: var(--fs-h3);
+}
+.legal h2:first-child {
+  margin-top: 0;
+}
+
+.legal p + p,
+.legal ul {
+  margin-top: var(--sp-2);
+}
+
+.legal ul li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-size: var(--fs-small);
+  line-height: 1.6;
+}
+.legal ul li::before {
+  content: '';
+  position: absolute;
+  top: 0.65em;
+  left: 0.25rem;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--mist-blue);
+}
+
+.legal__notice {
+  margin-bottom: var(--sp-5);
+  padding: var(--sp-3);
+  border-left: 3px solid var(--signal-orange);
+  background: rgba(var(--rgb-orange), 0.06);
+  font-size: var(--fs-small);
+  line-height: 1.6;
+}
+
+.legal__updated {
+  margin-top: var(--sp-5);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--soft-gray);
+  color: var(--graphite-gray);
+  font-size: 0.8rem;
+}
+
+/* --------------------------------------------------------------------------
+   404
+   -------------------------------------------------------------------------- */
+
+.error-page {
+  display: flex;
+  align-items: center;
+  min-height: calc(100svh - var(--header-h));
+  padding-block: calc(var(--header-h) + var(--sp-5)) var(--sp-6);
+  overflow: hidden;
+  background:
+    radial-gradient(55% 55% at 78% 40%, rgba(var(--rgb-mist), 0.36) 0%, transparent 70%),
+    var(--surface-tint-soft);
+}
+
+.error-page__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: clamp(2rem, 1rem + 4vw, 4rem);
+}
+
+.error-page__code {
+  display: block;
+  margin-bottom: var(--sp-1);
+  color: var(--coeus-blue);
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 2rem + 9vw, 8rem);
+  line-height: 1;
+  opacity: 0.18;
+}
+
+.error-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+}
+
+.error-page__visual {
+  --float-duration: 15s;
+  max-width: 460px;
+  justify-self: center;
+}
+
+@media (max-width: 880px) {
+  .error-page__inner {
+    grid-template-columns: 1fr;
+  }
+  .error-page__visual {
+    display: none;
+  }
+}

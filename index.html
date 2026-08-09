@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Coeus Cybersecurity — Seguridad ofensiva y ciberseguridad para empresas</title>
+    <meta
+      name="description"
+      content="Ayudamos a las empresas a anticipar amenazas, reducir riesgos y proteger la continuidad de su operación. Pruebas de penetración, DevSecOps y soluciones de ciberseguridad."
+    />
+    <meta name="theme-color" content="#0f4c81" />
+    <link rel="canonical" href="https://coeus.com.mx/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:site_name" content="Coeus Cybersecurity" />
+    <meta
+      property="og:title"
+      content="Coeus Cybersecurity — Seguridad ofensiva y ciberseguridad para empresas"
+    />
+    <meta
+      property="og:description"
+      content="Navegamos la incertidumbre. Protegemos lo que importa."
+    />
+    <meta property="og:image" content="img/optimized/dragon.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/png" href="img/optimized/favicon.png" />
+    <link rel="apple-touch-icon" href="img/optimized/favicon.png" />
+
+    <!-- Conditionne le masquage des blocs animés : sans JavaScript, rien
+         n'est caché. Doit rester avant les feuilles de style. -->
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/home.css" />
+
+    <script type="module" src="js/main.js"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Coeus Cybersecurity",
+        "url": "https://coeus.com.mx/",
+        "logo": "https://coeus.com.mx/img/optimized/logo-coeus.png",
+        "slogan": "Navegamos la incertidumbre. Protegemos lo que importa.",
+        "description": "Seguridad ofensiva y ciberseguridad para empresas.",
+        "email": "linda@coeus.com.mx",
+        "telephone": "+52 55 4971 7709",
+        "areaServed": "MX",
+        "knowsAbout": [
+          "Pruebas de Penetración",
+          "Coordinación de Ciberseguridad",
+          "Application Security Testing",
+          "DevSecOps"
+        ]
+      }
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Ir al contenido principal</a>
+
+    <!-- ====================================================================
+         HEADER
+         ==================================================================== -->
+    <header class="header" data-header>
+      <div class="container header__inner">
+        <a class="header__logo" href="index.html" aria-label="Coeus Cybersecurity — Inicio">
+          <picture>
+            <source srcset="img/optimized/logo-coeus.webp" type="image/webp" />
+            <img src="img/optimized/logo-coeus.png" alt="Coeus Cybersecurity" width="1772" height="600" />
+          </picture>
+        </a>
+
+        <nav class="nav" aria-label="Navegación principal">
+          <div class="nav__item" data-dropdown>
+            <button class="nav__trigger" type="button" aria-expanded="false" aria-controls="menu-soluciones">
+              Soluciones
+              <svg class="nav__caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+            </button>
+            <div class="dropdown" id="menu-soluciones" role="group" aria-label="Soluciones">
+              <a class="dropdown__link" href="soluciones/pruebas-de-penetracion.html">
+                Pruebas de Penetración
+                <span>Ataques controlados sobre infraestructura, apps y servicios.</span>
+              </a>
+              <a class="dropdown__link" href="soluciones/coordinacion-de-ciberseguridad.html">
+                Coordinación de Ciberseguridad
+                <span>Gestión de vulnerabilidades, gobierno e indicadores ejecutivos.</span>
+              </a>
+              <a class="dropdown__link" href="soluciones/soluciones-de-ciberseguridad.html">
+                Diseño, Implementación y Operación
+                <span>Zero Trust, SASE, SIEM, Cloud Security, Identity Security.</span>
+              </a>
+              <a class="dropdown__link" href="soluciones/application-security-testing.html">
+                Application Security Testing
+                <span>SAST, DAST, IAST, SCA y análisis de dependencias.</span>
+              </a>
+              <a class="dropdown__link" href="soluciones/devsecops.html">
+                DevSecOps
+                <span>Security pipelines, controles CI/CD e Infrastructure as Code.</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="nav__item" data-dropdown>
+            <button class="nav__trigger" type="button" aria-expanded="false" aria-controls="menu-coeus">
+              Coeus
+              <svg class="nav__caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+            </button>
+            <div class="dropdown" id="menu-coeus" role="group" aria-label="Coeus">
+              <a class="dropdown__link" href="nosotros.html">
+                Nosotros
+                <span>Misión, visión, nuestra promesa y certificaciones.</span>
+              </a>
+              <a class="dropdown__link" href="socios-aliados.html">
+                Socios Aliados
+                <span>Socios principales y demás aliados tecnológicos.</span>
+              </a>
+              <a class="dropdown__link" href="recursos.html">
+                Recursos
+                <span>Noticias, eventos y blog.</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="nav__item">
+            <a class="nav__link" href="contacto.html">Contacto</a>
+          </div>
+        </nav>
+
+        <div class="header__actions">
+          <a class="icon-link" data-todo="linkedinUrl" aria-label="Coeus en LinkedIn" rel="noopener" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M6.94 5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0ZM3.3 8.48h3.4V21H3.3V8.48Zm5.72 0h3.26v1.71h.05a3.57 3.57 0 0 1 3.22-1.77c3.44 0 4.08 2.27 4.08 5.21V21h-3.4v-6.46c0-1.54-.03-3.52-2.14-3.52-2.15 0-2.48 1.68-2.48 3.41V21H9.02V8.48Z" />
+            </svg>
+          </a>
+          <a class="icon-link" data-todo="xUrl" aria-label="Coeus en X" rel="noopener" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.22-6.82-5.96 6.82H1.68l7.73-8.84L1.25 2.25h6.82l4.71 6.23 5.46-6.23Zm-1.16 17.52h1.83L7.01 4.13H5.05l12.03 15.64Z" />
+            </svg>
+          </a>
+          <a
+            class="btn-dragon"
+            data-todo="whatsappUrl"
+            data-todo-fallback="contacto.html"
+            aria-label="Contactar a Coeus por WhatsApp"
+            rel="noopener"
+            target="_blank"
+          >
+            <img src="img/optimized/dragon-mark.png" alt="" width="512" height="310" />
+          </a>
+
+          <button class="burger" type="button" data-burger aria-expanded="false" aria-controls="drawer" aria-label="Abrir el menú">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Drawer mobile -->
+    <div class="drawer" id="drawer" data-drawer aria-hidden="true">
+      <div class="drawer__section" data-accordion>
+        <button class="drawer__toggle" type="button" data-accordion-toggle aria-expanded="false">
+          Soluciones
+          <svg width="12" height="8" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+          </svg>
+        </button>
+        <div class="drawer__panel">
+          <div>
+            <a href="soluciones/pruebas-de-penetracion.html">Pruebas de Penetración</a>
+            <a href="soluciones/coordinacion-de-ciberseguridad.html">Coordinación de Ciberseguridad</a>
+            <a href="soluciones/soluciones-de-ciberseguridad.html">Diseño, Implementación y Operación</a>
+            <a href="soluciones/application-security-testing.html">Application Security Testing</a>
+            <a href="soluciones/devsecops.html">DevSecOps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="drawer__section" data-accordion>
+        <button class="drawer__toggle" type="button" data-accordion-toggle aria-expanded="false">
+          Coeus
+          <svg width="12" height="8" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+          </svg>
+        </button>
+        <div class="drawer__panel">
+          <div>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="socios-aliados.html">Socios Aliados</a>
+            <a href="recursos.html">Recursos</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="drawer__section">
+        <a class="drawer__link" href="contacto.html">Contacto</a>
+      </div>
+
+      <div class="drawer__footer">
+        <a class="btn btn--primary" data-todo="whatsappUrl" data-todo-fallback="contacto.html" rel="noopener">
+          Contáctanos ahora
+        </a>
+      </div>
+    </div>
+
+    <main id="main">
+      <!-- ==================================================================
+           01 · HERO
+           ================================================================== -->
+      <section class="hero">
+        <div class="hero__bg" aria-hidden="true"></div>
+
+        <div class="container hero__inner">
+          <div class="hero__text">
+            <h1 class="hero__headline">
+              Seguridad ofensiva<br />
+              y ciberseguridad<br />
+              para empresas.
+            </h1>
+
+            <p class="hero__sub lead">
+              Ayudamos a las empresas a anticipar amenazas, reducir riesgos y proteger la
+              continuidad de su operación.
+            </p>
+
+            <p class="hero__slogan">
+              Navegamos la incertidumbre.<br />
+              <strong>Protegemos lo que importa.</strong>
+            </p>
+
+            <div class="hero__actions">
+              <a
+                class="btn btn--primary"
+                data-todo="whatsappUrl"
+                data-todo-fallback="contacto.html"
+                rel="noopener"
+              >
+                Contáctanos ahora
+                <svg class="btn__arrow" width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+                  <path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+              <a class="btn btn--secondary" href="#capacidades">Ver nuestras capacidades</a>
+            </div>
+          </div>
+
+          <div class="hero__visual symbol symbol--float" data-particles data-density="86">
+            <canvas class="symbol__canvas" aria-hidden="true"></canvas>
+            <picture>
+              <source srcset="img/optimized/dragon.webp" type="image/webp" />
+              <img
+                class="symbol__img"
+                src="img/optimized/dragon.png"
+                alt="Dragón Coeus: representación tecnológica de protección y fuerza ofensiva"
+                width="1500"
+                height="1000"
+                fetchpriority="high"
+              />
+            </picture>
+          </div>
+        </div>
+
+        <div class="scroll-hint" data-scroll-hint aria-hidden="true">
+          <svg width="18" height="28" viewBox="0 0 18 28" fill="none">
+            <rect x="0.75" y="0.75" width="16.5" height="26.5" rx="8.25" stroke="currentColor" stroke-width="1.2" />
+            <circle class="scroll-hint__dot" cx="9" cy="8" r="2" fill="currentColor" />
+          </svg>
+          <span>Scroll</span>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           02 · NUESTROS CLIENTES
+           ================================================================== -->
+      <section class="clients" aria-labelledby="clientes-title">
+        <p class="clients__backdrop" aria-hidden="true">NUESTROS CLIENTES</p>
+
+        <div class="container">
+          <h2 class="eyebrow clients__title" id="clientes-title">Nuestros clientes</h2>
+        </div>
+
+        <div class="marquee" data-marquee data-marquee-speed="46">
+          <div class="marquee__track" data-marquee-track>
+            <div class="marquee__item">
+              <picture>
+                <source srcset="img/optimized/clientes/genomma.webp" type="image/webp" />
+                <img src="img/optimized/clientes/genomma.png" alt="Genomma Lab" loading="lazy" width="247" height="160" />
+              </picture>
+            </div>
+            <div class="marquee__item">
+              <picture>
+                <source srcset="img/optimized/clientes/adns.webp" type="image/webp" />
+                <img src="img/optimized/clientes/adns.png" alt="ADNS" loading="lazy" width="453" height="160" />
+              </picture>
+            </div>
+            <div class="marquee__item">
+              <picture>
+                <source srcset="img/optimized/clientes/ana-seguros.webp" type="image/webp" />
+                <img src="img/optimized/clientes/ana-seguros.png" alt="ANA Seguros" loading="lazy" width="268" height="160" />
+              </picture>
+            </div>
+            <div class="marquee__item">
+              <picture>
+                <source srcset="img/optimized/clientes/enerser.webp" type="image/webp" />
+                <img src="img/optimized/clientes/enerser.png" alt="Enerser" loading="lazy" width="733" height="160" />
+              </picture>
+            </div>
+            <div class="marquee__item">
+              <picture>
+                <source srcset="img/optimized/clientes/traject.webp" type="image/webp" />
+                <img src="img/optimized/clientes/traject.png" alt="Traject" loading="lazy" width="615" height="160" />
+              </picture>
+            </div>
+            <div class="marquee__item">
+              <picture>
+                <source srcset="img/optimized/clientes/andamios.webp" type="image/webp" />
+                <img src="img/optimized/clientes/andamios.png" alt="Andamios" loading="lazy" width="314" height="160" />
+              </picture>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           03 · NUESTRAS CAPACIDADES
+           ================================================================== -->
+      <section class="section capabilities" id="capacidades" aria-labelledby="capacidades-title">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <p class="eyebrow">Nuestras capacidades</p>
+            <h2 id="capacidades-title">Cinco frentes para proteger su operación.</h2>
+            <p class="lead capabilities__lead">
+              Cada capacidad responde a una etapa distinta del ciclo de seguridad, desde la
+              detección ofensiva hasta la operación continua.
+            </p>
+          </div>
+
+          <div class="card-grid card-grid--stagger" data-reveal-group>
+            <a class="cap-card glass" href="soluciones/pruebas-de-penetracion.html" data-reveal>
+              <span class="cap-card__icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+                  <circle cx="12" cy="12" r="9" />
+                  <circle cx="12" cy="12" r="4.5" />
+                  <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
+                  <path d="M12 1v3M12 20v3M1 12h3M20 12h3" stroke-linecap="round" />
+                </svg>
+              </span>
+              <h3 class="cap-card__title">Pruebas de Penetración</h3>
+              <p class="cap-card__text">
+                Identificamos vulnerabilidades antes de que puedan convertirse en un riesgo.
+              </p>
+              <span class="cap-card__more">
+                Conocer más
+                <svg width="14" height="10" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+                  <path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+
+            <a class="cap-card glass" href="soluciones/coordinacion-de-ciberseguridad.html" data-reveal>
+              <span class="cap-card__icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="m15.5 8.5-2.1 5.1-5.1 2.1 2.1-5.1 5.1-2.1Z" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <h3 class="cap-card__title">Coordinación de Ciberseguridad</h3>
+              <p class="cap-card__text">
+                Gestionamos la ciberseguridad como una función estratégica para su organización.
+              </p>
+              <span class="cap-card__more">
+                Conocer más
+                <svg width="14" height="10" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+                  <path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+
+            <a class="cap-card glass" href="soluciones/soluciones-de-ciberseguridad.html" data-reveal>
+              <span class="cap-card__icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+                  <path d="m12 3 9 4.5-9 4.5-9-4.5L12 3Z" stroke-linejoin="round" />
+                  <path d="m3 12 9 4.5 9-4.5" stroke-linejoin="round" />
+                  <path d="m3 16.5 9 4.5 9-4.5" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <h3 class="cap-card__title">Diseño, Implementación y Operación</h3>
+              <p class="cap-card__text">
+                Diseñamos, implementamos y operamos soluciones alineadas con sus objetivos de
+                negocio.
+              </p>
+              <span class="cap-card__more">
+                Conocer más
+                <svg width="14" height="10" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+                  <path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+
+            <a class="cap-card glass" href="soluciones/application-security-testing.html" data-reveal>
+              <span class="cap-card__icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14" />
+                </svg>
+              </span>
+              <h3 class="cap-card__title">Application Security Testing</h3>
+              <p class="cap-card__text">
+                Protegemos sus aplicaciones durante todo el ciclo de desarrollo.
+              </p>
+              <span class="cap-card__more">
+                Conocer más
+                <svg width="14" height="10" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+                  <path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+
+            <a class="cap-card glass" href="soluciones/devsecops.html" data-reveal>
+              <span class="cap-card__icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+                  <circle cx="5.5" cy="6" r="2.5" />
+                  <circle cx="18.5" cy="6" r="2.5" />
+                  <circle cx="12" cy="18" r="2.5" />
+                  <path d="M8 6h8M5.5 8.5v3a2 2 0 0 0 2 2h2M18.5 8.5v3a2 2 0 0 1-2 2h-2" stroke-linecap="round" />
+                </svg>
+              </span>
+              <h3 class="cap-card__title">DevSecOps</h3>
+              <p class="cap-card__text">
+                Integramos seguridad en cada etapa del desarrollo de software.
+              </p>
+              <span class="cap-card__more">
+                Conocer más
+                <svg width="14" height="10" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+                  <path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           04 · CIBERSEGURIDAD AVANZADA
+           ================================================================== -->
+      <section class="section advanced" aria-labelledby="avanzada-title">
+        <div class="container advanced__inner">
+          <div class="advanced__visual symbol symbol--float" data-particles data-density="52">
+            <canvas class="symbol__canvas" aria-hidden="true"></canvas>
+            <picture>
+              <source srcset="img/optimized/faro.webp" type="image/webp" />
+              <img
+                class="symbol__img"
+                src="img/optimized/faro.png"
+                alt="Faro Coeus: símbolo de visión, guía e inteligencia"
+                width="1100"
+                height="1650"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+
+          <div class="advanced__text" data-reveal>
+            <p class="eyebrow">Ciberseguridad avanzada</p>
+            <h2 id="avanzada-title">
+              Ciberseguridad avanzada para empresas que no pueden detener su operación.
+            </h2>
+            <p class="lead">
+              Visibilidad, estrategia y protección para fortalecer la continuidad del negocio.
+            </p>
+            <a class="btn btn--primary advanced__cta" href="contacto.html">
+              Solicitar un análisis
+              <svg class="btn__arrow" width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+                <path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           05 · ALCANCE Y EXPERIENCIA
+           ================================================================== -->
+      <section class="section experience" aria-labelledby="experiencia-title">
+        <div class="container">
+          <div class="section-head experience__head" data-reveal>
+            <p class="eyebrow">Alcance y experiencia</p>
+            <h2 id="experiencia-title">Experiencia que respalda cada decisión.</h2>
+          </div>
+
+          <dl class="stats" data-reveal-group>
+            <div class="stat" data-stat="Años de experiencia" data-reveal>
+              <dt class="visually-hidden">Años de experiencia</dt>
+              <dd class="stat__value"><span data-counter="15">0</span><span class="stat__suffix">+</span></dd>
+              <p class="stat__label">Años de experiencia</p>
+            </div>
+
+            <div class="stat" data-stat="Especializados en ciberseguridad" data-reveal>
+              <dt class="visually-hidden">Especializados en ciberseguridad</dt>
+              <dd class="stat__value"><span data-counter="100">0</span><span class="stat__suffix">%</span></dd>
+              <p class="stat__label">Especializados en ciberseguridad</p>
+            </div>
+
+            <div class="stat" data-stat="Empresas apoyadas" data-reveal>
+              <dt class="visually-hidden">Empresas apoyadas</dt>
+              <dd class="stat__value"><span data-counter="">0</span><span class="stat__suffix">+</span></dd>
+              <p class="stat__label">Empresas apoyadas</p>
+            </div>
+
+            <div class="stat" data-stat="Países atendidos" data-reveal>
+              <dt class="visually-hidden">Países atendidos</dt>
+              <dd class="stat__value"><span data-counter="">0</span><span class="stat__suffix">+</span></dd>
+              <p class="stat__label">Países atendidos</p>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           06 · RECURSOS
+           ================================================================== -->
+      <section class="section section--tint resources" aria-labelledby="recursos-title">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <p class="eyebrow">Recursos</p>
+            <h2 id="recursos-title">Conocimiento para anticipar las amenazas del mañana.</h2>
+            <p class="lead">
+              Compartimos análisis, tendencias y experiencias para ayudar a las organizaciones a
+              tomar mejores decisiones en ciberseguridad.
+            </p>
+          </div>
+
+          <div class="resources__grid" data-reveal-group>
+            <a class="res-card glass" href="recursos.html#blog" data-reveal>
+              <span class="res-card__label">Blog</span>
+              <h3 class="res-card__title">Artículos y análisis especializados.</h3>
+              <p class="res-card__text">
+                Contenido técnico, mejores prácticas y análisis especializados.
+              </p>
+              <span class="res-card__cta">
+                Ver artículos
+                <svg width="14" height="10" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+                  <path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+
+            <a class="res-card glass" href="recursos.html#noticias" data-reveal>
+              <span class="res-card__label">Noticias</span>
+              <h3 class="res-card__title">Las tendencias que impactan la ciberseguridad.</h3>
+              <p class="res-card__text">
+                Actualidad sobre amenazas, tecnologías y ciberseguridad empresarial.
+              </p>
+              <span class="res-card__cta">
+                Ver noticias
+                <svg width="14" height="10" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+                  <path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+
+            <a class="res-card glass" href="recursos.html#eventos" data-reveal>
+              <span class="res-card__label">Eventos</span>
+              <h3 class="res-card__title">Experiencias, webinars y sesiones exclusivas.</h3>
+              <p class="res-card__text">
+                Webinars, experiencias y eventos exclusivos junto a nuestros socios tecnológicos.
+              </p>
+              <span class="res-card__cta">
+                Ver eventos
+                <svg width="14" height="10" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+                  <path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           07 · CTA FINAL
+           ================================================================== -->
+      <section class="final-cta" aria-labelledby="cta-title">
+        <div class="final-cta__wave symbol symbol--float" data-particles data-density="44" aria-hidden="true">
+          <canvas class="symbol__canvas"></canvas>
+          <picture>
+            <source srcset="img/optimized/ola.webp" type="image/webp" />
+            <img class="symbol__img" src="img/optimized/ola.png" alt="" width="1500" height="1000" loading="lazy" />
+          </picture>
+        </div>
+
+        <div class="container final-cta__inner" data-reveal>
+          <h2 id="cta-title" class="final-cta__title">
+            La seguridad comienza con una conversación.
+          </h2>
+          <a class="btn btn--primary" data-todo="whatsappUrl" data-todo-fallback="contacto.html" rel="noopener">
+            Contáctanos ahora
+            <svg class="btn__arrow" width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+              <path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ====================================================================
+         FOOTER
+         ==================================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__top">
+          <div class="footer__brand">
+            <img src="img/optimized/logo-coeus-white.png" alt="Coeus Cybersecurity" width="1772" height="600" loading="lazy" />
+            <p class="footer__slogan">
+              Navegamos la incertidumbre.<br />
+              Protegemos lo que importa.
+            </p>
+          </div>
+
+          <div class="footer__col">
+            <h3>Soluciones</h3>
+            <ul>
+              <li><a href="soluciones/pruebas-de-penetracion.html">Pruebas de Penetración</a></li>
+              <li><a href="soluciones/coordinacion-de-ciberseguridad.html">Coordinación de Ciberseguridad</a></li>
+              <li><a href="soluciones/soluciones-de-ciberseguridad.html">Soluciones de Ciberseguridad</a></li>
+              <li><a href="soluciones/application-security-testing.html">Application Security Testing</a></li>
+              <li><a href="soluciones/devsecops.html">DevSecOps</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__col">
+            <h3>Coeus</h3>
+            <ul>
+              <li><a href="nosotros.html">Nosotros</a></li>
+              <li><a href="socios-aliados.html">Socios Aliados</a></li>
+              <li><a href="recursos.html">Recursos</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__col">
+            <h3>Recursos</h3>
+            <ul>
+              <li><a href="recursos.html#blog">Blog</a></li>
+              <li><a href="recursos.html#noticias">Noticias</a></li>
+              <li><a href="recursos.html#eventos">Eventos</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__col">
+            <h3>Contacto</h3>
+            <ul>
+              <li><a href="contacto.html">Contacto</a></li>
+              <li><a href="mailto:linda@coeus.com.mx">linda@coeus.com.mx</a></li>
+              <li><a href="tel:+525549717709">+52 55 4971 7709</a></li>
+              <li><a data-todo="linkedinUrl" rel="noopener" target="_blank">LinkedIn</a></li>
+              <li><a data-todo="xUrl" rel="noopener" target="_blank">X</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p>© 2026 Coeus Cybersecurity. Todos los derechos reservados.</p>
+          <nav class="footer__legal" aria-label="Enlaces legales">
+            <a href="aviso-de-privacidad.html">Aviso de Privacidad</a>
+            <a href="terminos-y-condiciones.html">Términos y Condiciones</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
