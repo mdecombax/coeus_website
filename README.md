@@ -2,6 +2,12 @@
 
 Site vitrine statique. Aucune dépendance, aucun build : HTML + CSS + modules ES natifs.
 
+**Aperçu en ligne** : <https://mdecombax.github.io/coeus_website/>
+(GitHub Pages, branche `main`, racine du dépôt — chaque `git push` redéploie.)
+
+Les balises `canonical` pointent volontairement vers `coeus.com.mx` : l'aperçu
+GitHub ne doit pas se substituer au domaine final dans les moteurs de recherche.
+
 ## Lancer en local
 
 ```bash
