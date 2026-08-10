@@ -1,0 +1,110 @@
+/* ==========================================================================
+   Coeus Cybersecurity — Design tokens
+   Source : Guía Maestra de Desarrollo Web v1.0
+   ========================================================================== */
+
+:root {
+  /* ---------- Couleurs de marque ---------- */
+  --coeus-blue: #0f4c81;
+  --arctic-white: #ffffff;
+  --midnight-navy: #0b1f33;
+  --graphite-gray: #333437;
+  --soft-gray: #e5e7eb;
+  --ice-blue: #dceaf7;
+  --mist-blue: #afcbe3;
+  --signal-orange: #f28c28;
+
+  /* Variantes dérivées (hover, états, halos) */
+  --coeus-blue-dark: #0c3d68;
+  --coeus-blue-light: #1a63a3;
+  --orange-dark: #d97812;
+  /* Signal Orange plafonne à 2.45:1 sur blanc : insuffisant même pour du
+     grand texte (WCAG AA exige 3:1). Cette variante à 3.16:1 est réservée au
+     TEXTE orange sur fond clair ; l'orange pur reste pour les aplats,
+     bordures, particules et boutons à texte foncé. */
+  --signal-orange-text: #d97812;
+
+  /* Canaux RGB pour composer des rgba() sans dupliquer les hex */
+  --rgb-coeus-blue: 15, 76, 129;
+  --rgb-navy: 11, 31, 51;
+  --rgb-orange: 242, 140, 40;
+  --rgb-mist: 175, 203, 227;
+
+  /* ---------- Surfaces ---------- */
+  --surface-page: var(--arctic-white);
+  --surface-tint: linear-gradient(180deg, #ffffff 0%, #f4f9fd 55%, var(--ice-blue) 100%);
+  --surface-tint-soft: linear-gradient(180deg, #ffffff 0%, #f7fbfe 100%);
+  --gradient-brand: linear-gradient(135deg, var(--coeus-blue) 0%, var(--mist-blue) 100%);
+
+  /* ---------- Glassmorphism ---------- */
+  --glass-bg: rgba(255, 255, 255, 0.66);
+  --glass-bg-strong: rgba(255, 255, 255, 0.82);
+  --glass-blur: 18px;
+  --glass-border: 1px solid rgba(var(--rgb-coeus-blue), 0.16);
+  --glass-border-hover: 1px solid rgba(var(--rgb-coeus-blue), 0.32);
+  --glass-shadow: 0 16px 45px rgba(var(--rgb-navy), 0.1);
+  --glass-shadow-hover: 0 24px 60px rgba(var(--rgb-navy), 0.15);
+
+  /* ---------- Typographie ---------- */
+  --font-display: 'Staatliches', 'Arial Narrow', 'Haettenschweiler', sans-serif;
+  --font-body: 'Roboto Mono', 'Courier New', ui-monospace, monospace;
+
+  /* Échelle fluide : mobile min → desktop max (Guía §4) */
+  --fs-h1: clamp(2.625rem, 1.6rem + 4.4vw, 5rem);        /* 42 → 80 px */
+  --fs-h2: clamp(2rem, 1.5rem + 2.2vw, 3.5rem);          /* 32 → 56 px */
+  --fs-h3: clamp(1.375rem, 1.15rem + 0.95vw, 2rem);      /* 22 → 32 px */
+  --fs-body: clamp(1rem, 0.94rem + 0.25vw, 1.125rem);    /* 16 → 18 px */
+  --fs-body-lg: clamp(1.0625rem, 0.95rem + 0.5vw, 1.25rem); /* 17 → 20 px */
+  --fs-small: clamp(0.8125rem, 0.78rem + 0.15vw, 0.9375rem);
+  --fs-eyebrow: clamp(0.6875rem, 0.65rem + 0.15vw, 0.8125rem); /* 11 → 13 px */
+  --fs-button: clamp(0.875rem, 0.85rem + 0.1vw, 1rem);   /* 14 → 16 px */
+  --fs-counter: clamp(3rem, 2rem + 4.5vw, 5.5rem);
+
+  --lh-tight: 1.02;
+  --lh-heading: 1.08;
+  --lh-body: 1.65;
+  --track-eyebrow: 0.12em;
+  --track-display: 0.005em;
+
+  /* ---------- Espacement (base 8) ---------- */
+  --sp-1: 0.5rem;
+  --sp-2: 1rem;
+  --sp-3: 1.5rem;
+  --sp-4: 2rem;
+  --sp-5: 3rem;
+  --sp-6: 4rem;
+  --sp-7: 6rem;
+  --sp-8: 8rem;
+  --section-y: clamp(4.5rem, 3rem + 7vw, 9rem);
+  --gutter: clamp(1.25rem, 0.5rem + 3vw, 4rem);
+  --container: 1280px;
+  --container-narrow: 880px;
+
+  /* ---------- Rayons ---------- */
+  --radius-sm: 10px;
+  --radius: 20px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  /* ---------- Mouvement (Guía §7) ---------- */
+  --dur-fast: 180ms;
+  --dur-mid: 320ms;
+  --dur-slow: 480ms;
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0.05, 0.36, 1);
+
+  /* ---------- Couches ---------- */
+  --z-canvas: 1;
+  --z-content: 2;
+  --z-header: 100;
+  --z-drawer: 200;
+  --z-cursor: 300;
+
+  --header-h: 76px;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --header-h: 64px;
+  }
+}
