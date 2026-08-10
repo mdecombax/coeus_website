@@ -35,6 +35,17 @@
   </head>
 
   <body>
+
+    <!-- Préchargeur : retiré par js/preloader.js dès que la page est utilisable.
+         Une animation de secours le fait disparaître même si le module échoue. -->
+    <div class="preloader" data-preloader aria-hidden="true">
+      <div class="preloader__mark">
+        <span class="preloader__ring"></span>
+        <span class="preloader__ring"></span>
+        <span class="preloader__core"></span>
+      </div>
+      <p class="preloader__word">Coeus</p>
+    </div>
     <a class="skip-link" href="#main">Ir al contenido principal</a>
 
     <!-- ====================================================================

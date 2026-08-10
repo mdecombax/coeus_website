@@ -65,6 +65,17 @@
   </head>
 
   <body>
+
+    <!-- Préchargeur : retiré par js/preloader.js dès que la page est utilisable.
+         Une animation de secours le fait disparaître même si le module échoue. -->
+    <div class="preloader" data-preloader aria-hidden="true">
+      <div class="preloader__mark">
+        <span class="preloader__ring"></span>
+        <span class="preloader__ring"></span>
+        <span class="preloader__core"></span>
+      </div>
+      <p class="preloader__word">Coeus</p>
+    </div>
     <a class="skip-link" href="#main">Ir al contenido principal</a>
 
     <!-- ====================================================================
@@ -223,11 +234,26 @@
         <div class="hero__bg" aria-hidden="true"></div>
 
         <div class="container hero__inner">
+          <div class="hero__visual symbol symbol--float" data-particles data-density="110" data-parallax="18">
+            <canvas class="symbol__canvas" aria-hidden="true"></canvas>
+            <picture>
+              <source srcset="img/optimized/dragon.webp" type="image/webp" />
+              <img
+                class="symbol__img"
+                src="img/optimized/dragon.png"
+                alt="Dragón Coeus: representación tecnológica de protección y fuerza ofensiva"
+                width="1500"
+                height="1000"
+                fetchpriority="high"
+              />
+            </picture>
+          </div>
+
           <div class="hero__text">
             <h1 class="hero__headline">
               Seguridad ofensiva<br />
-              y ciberseguridad<br />
-              para empresas.
+              y <span class="accent">ciberseguridad</span><br />
+              para <span class="accent">empresas</span>.
             </h1>
 
             <p class="hero__sub lead">
@@ -236,8 +262,7 @@
             </p>
 
             <p class="hero__slogan">
-              Navegamos la incertidumbre.<br />
-              <strong>Protegemos lo que importa.</strong>
+              <span>Navegamos la incertidumbre. <strong>Protegemos lo que importa.</strong></span>
             </p>
 
             <div class="hero__actions">
@@ -252,23 +277,7 @@
                   <path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
               </a>
-              <a class="btn btn--secondary" href="#capacidades">Ver nuestras capacidades</a>
             </div>
-          </div>
-
-          <div class="hero__visual symbol symbol--float" data-particles data-density="86">
-            <canvas class="symbol__canvas" aria-hidden="true"></canvas>
-            <picture>
-              <source srcset="img/optimized/dragon.webp" type="image/webp" />
-              <img
-                class="symbol__img"
-                src="img/optimized/dragon.png"
-                alt="Dragón Coeus: representación tecnológica de protección y fuerza ofensiva"
-                width="1500"
-                height="1000"
-                fetchpriority="high"
-              />
-            </picture>
           </div>
         </div>
 
@@ -456,7 +465,7 @@
            ================================================================== -->
       <section class="section advanced" aria-labelledby="avanzada-title">
         <div class="container advanced__inner">
-          <div class="advanced__visual symbol symbol--float" data-particles data-density="52">
+          <div class="advanced__visual symbol symbol--float" data-particles data-density="64" data-parallax="26">
             <canvas class="symbol__canvas" aria-hidden="true"></canvas>
             <picture>
               <source srcset="img/optimized/faro.webp" type="image/webp" />
@@ -543,6 +552,22 @@
 
           <div class="resources__grid" data-reveal-group>
             <a class="res-card glass" href="recursos.html#blog" data-reveal>
+              <span class="res-card__media">
+                <svg class="res-illu" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <g class="res-illu__arcs">
+                    <circle cx="292" cy="168" r="36" />
+                    <circle cx="292" cy="168" r="62" />
+                    <circle cx="292" cy="168" r="88" />
+                  </g>
+                  <rect class="res-illu__line" x="70" y="28" width="118" height="104" rx="10" />
+                  <rect class="res-illu__plate" x="96" y="48" width="122" height="104" rx="10" />
+                  <rect class="res-illu__fill" x="116" y="66" width="44" height="8" rx="4" />
+                  <g class="res-illu__line">
+                    <path d="M116 92h82M116 110h82M116 128h50" />
+                  </g>
+                  <circle class="res-illu__accent" cx="204" cy="70" r="4.5" />
+                </svg>
+              </span>
               <span class="res-card__label">Blog</span>
               <h3 class="res-card__title">Artículos y análisis especializados.</h3>
               <p class="res-card__text">
@@ -557,6 +582,24 @@
             </a>
 
             <a class="res-card glass" href="recursos.html#noticias" data-reveal>
+              <span class="res-card__media">
+                <svg class="res-illu" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <g class="res-illu__arcs">
+                    <circle cx="292" cy="168" r="36" />
+                    <circle cx="292" cy="168" r="62" />
+                    <circle cx="292" cy="168" r="88" />
+                  </g>
+                  <rect class="res-illu__plate" x="86" y="44" width="150" height="100" rx="12" />
+                  <g class="res-illu__line">
+                    <path d="M133 86a26 26 0 0 1 36 0" />
+                    <path d="M121 74a43 43 0 0 1 60 0" />
+                    <path d="M151 104v18" />
+                    <path d="M110 128h84" />
+                  </g>
+                  <circle class="res-illu__accent" cx="151" cy="98" r="5" />
+                  <rect class="res-illu__fill" x="110" y="112" width="52" height="8" rx="4" />
+                </svg>
+              </span>
               <span class="res-card__label">Noticias</span>
               <h3 class="res-card__title">Las tendencias que impactan la ciberseguridad.</h3>
               <p class="res-card__text">
@@ -571,6 +614,28 @@
             </a>
 
             <a class="res-card glass" href="recursos.html#eventos" data-reveal>
+              <span class="res-card__media">
+                <svg class="res-illu" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <g class="res-illu__arcs">
+                    <circle cx="292" cy="168" r="36" />
+                    <circle cx="292" cy="168" r="62" />
+                    <circle cx="292" cy="168" r="88" />
+                  </g>
+                  <rect class="res-illu__line" x="70" y="30" width="118" height="100" rx="10" />
+                  <rect class="res-illu__plate" x="96" y="46" width="128" height="106" rx="12" />
+                  <g class="res-illu__line">
+                    <path d="M96 76h128M124 46V34M196 46V34" />
+                  </g>
+                  <g class="res-illu__fill">
+                    <rect x="114" y="92" width="20" height="14" rx="4" />
+                    <rect x="144" y="92" width="20" height="14" rx="4" />
+                    <rect x="174" y="92" width="20" height="14" rx="4" />
+                    <rect x="114" y="116" width="20" height="14" rx="4" />
+                    <rect x="174" y="116" width="20" height="14" rx="4" />
+                  </g>
+                  <rect class="res-illu__accent" x="144" y="116" width="20" height="14" rx="4" />
+                </svg>
+              </span>
               <span class="res-card__label">Eventos</span>
               <h3 class="res-card__title">Experiencias, webinars y sesiones exclusivas.</h3>
               <p class="res-card__text">
@@ -591,7 +656,7 @@
            07 · CTA FINAL
            ================================================================== -->
       <section class="final-cta" aria-labelledby="cta-title">
-        <div class="final-cta__wave symbol symbol--float" data-particles data-density="44" aria-hidden="true">
+        <div class="final-cta__wave symbol symbol--float" data-particles data-density="48" data-parallax="-18" aria-hidden="true">
           <canvas class="symbol__canvas"></canvas>
           <picture>
             <source srcset="img/optimized/ola.webp" type="image/webp" />

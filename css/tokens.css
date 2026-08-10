@@ -31,34 +31,71 @@
   --rgb-mist: 175, 203, 227;
 
   /* ---------- Surfaces ---------- */
+  /* Le fond reste majoritairement blanc ; la profondeur vient de dégradés
+     Ice Blue très étalés plutôt que d'aplats colorés (Guía §1). */
   --surface-page: var(--arctic-white);
   --surface-tint: linear-gradient(180deg, #ffffff 0%, #f4f9fd 55%, var(--ice-blue) 100%);
-  --surface-tint-soft: linear-gradient(180deg, #ffffff 0%, #f7fbfe 100%);
+  /* Symétriques : blanc aux deux extrémités, teinte au centre. Une section
+     teintée peut ainsi en jouxter une blanche sans qu'une arête horizontale
+     n'apparaisse à la jonction. */
+  --surface-tint-soft: linear-gradient(180deg, #ffffff 0%, #f3f9fd 50%, #ffffff 100%);
+  --surface-ice: linear-gradient(180deg, #ffffff 0%, var(--ice-blue) 52%, #ffffff 100%);
   --gradient-brand: linear-gradient(135deg, var(--coeus-blue) 0%, var(--mist-blue) 100%);
 
+  /* Halos réutilisables : posés en première couche d'un `background` composite,
+     ils donnent le relief sans jamais quitter le blanc. */
+  --halo-mist: radial-gradient(52% 46% at 84% 12%, rgba(var(--rgb-mist), 0.38) 0%, transparent 68%);
+  --halo-blue: radial-gradient(46% 44% at 8% 88%, rgba(var(--rgb-coeus-blue), 0.09) 0%, transparent 70%);
+
   /* ---------- Glassmorphism ---------- */
-  --glass-bg: rgba(255, 255, 255, 0.66);
-  --glass-bg-strong: rgba(255, 255, 255, 0.82);
-  --glass-blur: 18px;
-  --glass-border: 1px solid rgba(var(--rgb-coeus-blue), 0.16);
-  --glass-border-hover: 1px solid rgba(var(--rgb-coeus-blue), 0.32);
-  --glass-shadow: 0 16px 45px rgba(var(--rgb-navy), 0.1);
-  --glass-shadow-hover: 0 24px 60px rgba(var(--rgb-navy), 0.15);
+  /* Le verre est teinté de Mist Blue et non purement blanc : sur une page
+     blanche, une transparence neutre est invisible. Le dégradé diagonal simule
+     la réfraction, le liseré interne clair simule l'arête du panneau. */
+  --glass-bg: linear-gradient(
+    148deg,
+    rgba(255, 255, 255, 0.74) 0%,
+    rgba(255, 255, 255, 0.4) 46%,
+    rgba(var(--rgb-mist), 0.34) 100%
+  );
+  --glass-bg-strong: linear-gradient(
+    148deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.66) 48%,
+    rgba(var(--rgb-mist), 0.42) 100%
+  );
+  --glass-blur: 22px;
+  --glass-border: 1px solid rgba(var(--rgb-coeus-blue), 0.18);
+  --glass-border-hover: 1px solid rgba(var(--rgb-coeus-blue), 0.38);
+  /* Ombres froides (teintées bleu) plutôt que grises : elles ancrent la carte
+     sur le blanc au lieu de la salir. */
+  --glass-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 2px 6px -2px rgba(var(--rgb-coeus-blue), 0.1),
+    0 22px 48px -20px rgba(var(--rgb-coeus-blue), 0.34);
+  --glass-shadow-hover:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 4px 10px -3px rgba(var(--rgb-coeus-blue), 0.14),
+    0 32px 64px -22px rgba(var(--rgb-coeus-blue), 0.42);
+  /* Halo bleu ponctuel au survol des surfaces interactives. */
+  --glow-blue: 0 0 0 4px rgba(var(--rgb-coeus-blue), 0.08);
+  --glow-orange: 0 0 0 4px rgba(var(--rgb-orange), 0.14);
 
   /* ---------- Typographie ---------- */
   --font-display: 'Staatliches', 'Arial Narrow', 'Haettenschweiler', sans-serif;
   --font-body: 'Roboto Mono', 'Courier New', ui-monospace, monospace;
 
-  /* Échelle fluide : mobile min → desktop max (Guía §4) */
-  --fs-h1: clamp(2.625rem, 1.6rem + 4.4vw, 5rem);        /* 42 → 80 px */
-  --fs-h2: clamp(2rem, 1.5rem + 2.2vw, 3.5rem);          /* 32 → 56 px */
-  --fs-h3: clamp(1.375rem, 1.15rem + 0.95vw, 2rem);      /* 22 → 32 px */
+  /* Échelle fluide : mobile min → desktop max (Guía §4).
+     Volontairement resserrée par rapport à la v1 : moins de poids typographique
+     laisse la place aux symboles de marque, qui portent désormais l'échelle. */
+  --fs-h1: clamp(2.25rem, 1.45rem + 3.4vw, 4rem);        /* 36 → 64 px */
+  --fs-h2: clamp(1.75rem, 1.32rem + 1.9vw, 2.875rem);    /* 28 → 46 px */
+  --fs-h3: clamp(1.25rem, 1.08rem + 0.72vw, 1.75rem);    /* 20 → 28 px */
   --fs-body: clamp(1rem, 0.94rem + 0.25vw, 1.125rem);    /* 16 → 18 px */
   --fs-body-lg: clamp(1.0625rem, 0.95rem + 0.5vw, 1.25rem); /* 17 → 20 px */
   --fs-small: clamp(0.8125rem, 0.78rem + 0.15vw, 0.9375rem);
   --fs-eyebrow: clamp(0.6875rem, 0.65rem + 0.15vw, 0.8125rem); /* 11 → 13 px */
   --fs-button: clamp(0.875rem, 0.85rem + 0.1vw, 1rem);   /* 14 → 16 px */
-  --fs-counter: clamp(3rem, 2rem + 4.5vw, 5.5rem);
+  --fs-counter: clamp(2.75rem, 1.85rem + 3.9vw, 4.75rem); /* 44 → 76 px */
 
   --lh-tight: 1.02;
   --lh-heading: 1.08;
@@ -75,13 +112,18 @@
   --sp-6: 4rem;
   --sp-7: 6rem;
   --sp-8: 8rem;
-  --section-y: clamp(4.5rem, 3rem + 7vw, 9rem);
+  /* Respiration accrue : l'espace négatif fait une part du travail que la
+     typographie assurait avant sa réduction d'échelle. */
+  --section-y: clamp(5rem, 3.2rem + 7.6vw, 10rem);
   --gutter: clamp(1.25rem, 0.5rem + 3vw, 4rem);
   --container: 1280px;
   --container-narrow: 880px;
 
-  /* ---------- Rayons ---------- */
-  --radius-sm: 10px;
+  /* ---------- Rayons ----------
+     Échelle unique : `sm` pour les éléments internes (icônes, champs, chips),
+     la valeur nominale pour toute carte ou module, `lg` pour les grands blocs
+     médias. Aucun rayon ad hoc ailleurs dans les feuilles. */
+  --radius-sm: 12px;
   --radius: 20px;
   --radius-lg: 28px;
   --radius-pill: 999px;
@@ -90,6 +132,7 @@
   --dur-fast: 180ms;
   --dur-mid: 320ms;
   --dur-slow: 480ms;
+  --dur-xslow: 900ms;
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0.05, 0.36, 1);
 
@@ -99,8 +142,12 @@
   --z-header: 100;
   --z-drawer: 200;
   --z-cursor: 300;
+  --z-preloader: 400;
 
   --header-h: 76px;
+  /* Diamètre commun à tous les contrôles circulaires du header (LinkedIn, X,
+     dragón) : ils doivent former une série, pas trois tailles différentes. */
+  --control-size: 44px;
 }
 
 @media (max-width: 900px) {

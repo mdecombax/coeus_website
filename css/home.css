@@ -8,56 +8,118 @@
    01 · HERO
    -------------------------------------------------------------------------- */
 
+/* Composition centrée : le dragón porte l'échelle de la page, le titre passe
+   derrière lui en taille. C'est l'inverse de la v1, où un H1 de 80 px écrasait
+   un symbole trop discret. */
 .hero {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: min(100svh, 940px);
-  padding-block: calc(var(--header-h) + var(--sp-5)) var(--sp-6);
+  min-height: min(100svh, 1000px);
+  padding-block: calc(var(--header-h) + var(--sp-2)) var(--sp-5);
   overflow: hidden;
 }
 
-/* Gradient clair + halos très diffus : profondeur sans quitter le blanc. */
+/* Gradients clairs + halos très diffus : profondeur sans quitter le blanc.
+   Le halo principal est désormais centré, sous le dragón, pour l'asseoir. */
 .hero__bg {
   position: absolute;
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(60% 55% at 78% 34%, rgba(var(--rgb-mist), 0.42) 0%, transparent 68%),
-    radial-gradient(42% 42% at 12% 78%, rgba(var(--rgb-coeus-blue), 0.08) 0%, transparent 70%),
+    /* Fondu final vers le blanc, pour que les halos ne soient pas tranchés net
+       par le bas du hero. */
+    linear-gradient(180deg, transparent 68%, #ffffff 100%),
+    radial-gradient(46% 40% at 50% 30%, rgba(var(--rgb-mist), 0.5) 0%, transparent 70%),
+    radial-gradient(38% 34% at 88% 10%, rgba(var(--rgb-coeus-blue), 0.08) 0%, transparent 72%),
+    radial-gradient(34% 32% at 8% 82%, rgba(var(--rgb-mist), 0.32) 0%, transparent 74%),
     var(--surface-tint-soft);
+}
+
+/* Ombre portée très étalée sous le symbole : elle empêche le dragón de
+   « flotter » sur un blanc plat une fois agrandi. */
+.hero__bg::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: min(70vw, 720px);
+  height: 90px;
+  transform: translateX(-50%);
+  background: radial-gradient(50% 50% at 50% 50%, rgba(var(--rgb-coeus-blue), 0.13) 0%, transparent 72%);
+  filter: blur(6px);
 }
 
 .hero__inner {
   position: relative;
   z-index: 1;
-  display: grid;
-  /* La colonne de texte garde de quoi tenir « Y CIBERSEGURIDAD » sur une seule
-     ligne ; le dragon gagne sa taille par le scale et le débordement dans la
-     gouttière plutôt qu'en volant de la largeur au titre. */
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.15fr);
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: clamp(1.5rem, 0.5rem + 2vw, 3rem);
+  text-align: center;
+}
+
+/* Colonne centrée : `align-items: center` suffit à recentrer chaque bloc, y
+   compris ceux qui portent une `max-width` en ch. */
+.hero__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.hero__visual {
+  width: min(94vw, 760px);
+  /* Marge de sécurité pour que les particules aient de la place hors du dessin. */
+  padding: clamp(0.5rem, 1.5vw, 1.25rem);
+  /* Le titre se glisse sous le ventre du dragón : le PNG porte une marge
+     transparente basse qu'il serait absurde de compter comme de l'espacement. */
+  margin-bottom: clamp(-2.5rem, -1.4rem - 1.6vw, -0.75rem);
+}
+/* La hauteur est plafonnée en unités de viewport : sur un écran court, le
+   symbole cède la place plutôt que de repousser le CTA sous la ligne de
+   flottaison. `object-fit` conserve le rapport 3:2 du dessin. */
+.hero__visual .symbol__img {
+  max-height: min(40svh, 430px);
+  object-fit: contain;
 }
 
 .hero__headline {
-  margin-bottom: var(--sp-3);
+  margin-bottom: var(--sp-2);
+  /* Les trois lignes sont posées à la main dans le HTML ; aucune largeur
+     maximale ne vient les recouper. */
   color: var(--midnight-navy);
+}
+/* Seuls « ciberseguridad » et « empresas » passent en Deep Blue. */
+.hero__headline .accent {
+  color: var(--coeus-blue);
 }
 
 .hero__sub {
-  max-width: 46ch;
-  margin-bottom: var(--sp-3);
+  max-width: 54ch;
+  margin-bottom: var(--sp-2);
 }
 
+/* Centré, le filet vertical orange de la v1 n'a plus de bord auquel s'accrocher :
+   il devient un point d'accent posé avant le slogan. */
 .hero__slogan {
-  margin-bottom: var(--sp-4);
-  padding-left: var(--sp-2);
-  border-left: 2px solid var(--signal-orange);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75em;
+  margin-bottom: var(--sp-3);
   color: var(--coeus-blue);
   font-size: var(--fs-small);
   letter-spacing: 0.02em;
   line-height: 1.7;
+}
+.hero__slogan::before {
+  content: '';
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--signal-orange);
+  box-shadow: 0 0 0 4px rgba(var(--rgb-orange), 0.15);
 }
 .hero__slogan strong {
   font-weight: 600;
@@ -66,38 +128,73 @@
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: var(--sp-2);
 }
 
-.hero__visual {
-  /* Marge de sécurité pour que les particules aient de la place hors du dessin.
-     Le dragon déborde volontairement dans la gouttière droite : `.hero` est en
-     overflow:hidden, aucun débordement de page n'est possible. */
-  padding: clamp(0.5rem, 1.5vw, 1.25rem);
-  margin-left: calc(var(--gutter) * -0.6);
-  margin-right: calc(var(--gutter) * -1.5);
-  scale: 1.2;
-  transform-origin: center right;
+/* Entrée du hero — animation CSS et non classe posée par JS : si le module ES
+   échoue, `animation-fill-mode: both` laisse malgré tout le contenu visible. */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
-
-@media (max-width: 1280px) {
-  .hero__visual {
-    margin-right: calc(var(--gutter) * -0.9);
-    scale: 1.1;
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
-/* Indicateur de scroll */
+/* Le visuel n'anime que son opacité : son `transform` appartient à la
+   micro-parallaxe (`--parallax-y`). */
+.js .hero__visual {
+  animation: hero-fade 1100ms var(--ease-out) 160ms both;
+}
+.js .hero__text > * {
+  animation: hero-rise var(--dur-xslow) var(--ease-out) both;
+}
+.js .hero__headline {
+  animation-delay: 380ms;
+}
+.js .hero__sub {
+  animation-delay: 470ms;
+}
+.js .hero__slogan {
+  animation-delay: 560ms;
+}
+.js .hero__actions {
+  animation-delay: 650ms;
+}
+
+@media (max-width: 720px) {
+  .hero {
+    min-height: 0;
+    padding-block: calc(var(--header-h) + var(--sp-3)) var(--sp-7);
+  }
+  .hero__visual .symbol__img {
+    max-height: 38svh;
+  }
+}
+
+/* Indicateur de scroll — ancré à droite depuis que la composition du hero est
+   centrée : au centre, il viendrait buter contre le CTA « Contáctanos ahora ». */
 .scroll-hint {
   position: absolute;
   bottom: var(--sp-3);
-  left: 50%;
+  right: var(--gutter);
   z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.6rem;
-  transform: translateX(-50%);
   color: var(--coeus-blue);
   font-size: var(--fs-eyebrow);
   letter-spacing: var(--track-eyebrow);
@@ -107,7 +204,7 @@
 }
 .scroll-hint.is-hidden {
   opacity: 0;
-  transform: translate(-50%, 12px);
+  transform: translateY(12px);
   pointer-events: none;
 }
 .scroll-hint__dot {
@@ -126,31 +223,6 @@
   }
 }
 
-/* Bascule à 1200 px et non 980 : en dessous, la colonne de texte devient trop
-   étroite pour tenir « Y CIBERSEGURIDAD » sur une ligne et le H1 déborde des
-   trois lignes maximum imposées par la Guía §4. */
-@media (max-width: 1200px) {
-  .hero {
-    min-height: 0;
-    padding-block: calc(var(--header-h) + var(--sp-4)) var(--sp-7);
-  }
-  .hero__inner {
-    grid-template-columns: 1fr;
-    gap: var(--sp-3);
-  }
-  .hero__visual {
-    order: -1;
-    max-width: 560px;
-    margin-inline: auto;
-    padding: var(--sp-1);
-    scale: 1;
-  }
-  .hero__sub,
-  .hero__slogan {
-    max-width: none;
-  }
-}
-
 /* --------------------------------------------------------------------------
    02 · NUESTROS CLIENTES
    -------------------------------------------------------------------------- */
@@ -159,27 +231,41 @@
   position: relative;
   padding-block: clamp(4.5rem, 3rem + 5vw, 8rem);
   overflow: hidden;
-  background: var(--arctic-white);
-  border-block: 1px solid var(--soft-gray);
+  background:
+    radial-gradient(62% 90% at 50% 52%, rgba(var(--rgb-mist), 0.24) 0%, transparent 74%),
+    var(--arctic-white);
+  border-block: 1px solid rgba(var(--rgb-coeus-blue), 0.1);
 }
 
 /* Le mot géant se place derrière la piste de logos, légèrement plus bas que
    le titre pour ne jamais se superposer à l'eyebrow. */
 .clients__backdrop {
   position: absolute;
-  top: 62%;
+  top: 60%;
   left: 50%;
   width: max-content;
   margin: 0;
   transform: translate(-50%, -50%);
-  color: var(--coeus-blue);
   font-family: var(--font-display);
-  font-size: clamp(4rem, 1rem + 14vw, 13.5rem);
+  /* Dimensionné pour que « NUESTROS CLIENTES » tienne en entier dans la
+     largeur : coupé par les bords, le mot se lisait comme un accident. */
+  font-size: clamp(2rem, 11vw, 12.5rem);
   line-height: 1;
-  letter-spacing: 0.02em;
-  /* Filigrane : le mot doit se deviner derrière les logos, jamais se lire
-     au même niveau qu'eux. */
-  opacity: 0.032;
+  letter-spacing: 0.015em;
+  /* Le filigrane de la v1 (opacité 0,032) était illisible. Il est désormais
+     assumé comme typographie de fond : un dégradé vertical Deep Blue → Mist
+     Blue clippé sur le texte lui donne de la présence tout en restant sous les
+     logos, dont il ne concurrence jamais le contraste. */
+  background: linear-gradient(
+    170deg,
+    rgba(var(--rgb-coeus-blue), 0.3) 0%,
+    rgba(var(--rgb-coeus-blue), 0.11) 52%,
+    rgba(var(--rgb-mist), 0.42) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
   user-select: none;
   pointer-events: none;
   white-space: nowrap;
@@ -213,13 +299,15 @@
   flex: none;
 }
 
+/* Logos assombris et plus opaques que dans la v1 : le mot de fond ayant gagné
+   en présence, ils doivent rester nettement au premier plan. */
 .marquee__item img {
   width: auto;
   max-width: 100%;
   max-height: 52px;
   object-fit: contain;
-  filter: grayscale(1) brightness(0.55) contrast(1.15);
-  opacity: 0.6;
+  filter: grayscale(1) brightness(0.34) contrast(1.2);
+  opacity: 0.82;
   transition: filter var(--dur-mid) var(--ease-out), opacity var(--dur-mid) var(--ease-out);
 }
 .marquee:hover .marquee__item img {
@@ -232,8 +320,10 @@
    -------------------------------------------------------------------------- */
 
 .capabilities {
+  position: relative;
   background:
-    radial-gradient(45% 40% at 88% 8%, rgba(var(--rgb-mist), 0.25) 0%, transparent 70%),
+    radial-gradient(42% 38% at 88% 6%, rgba(var(--rgb-mist), 0.32) 0%, transparent 70%),
+    radial-gradient(36% 34% at 4% 92%, rgba(var(--rgb-coeus-blue), 0.07) 0%, transparent 72%),
     var(--arctic-white);
 }
 
@@ -282,24 +372,27 @@
    04 · CIBERSEGURIDAD AVANZADA
    -------------------------------------------------------------------------- */
 
+/* Dégradé Ice Blue → White vertical, sur lequel se détache le faro. C'est la
+   section la plus « colorée » du Home : elle marque une respiration entre deux
+   sections blanches. */
 .advanced {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(50% 60% at 22% 50%, rgba(var(--rgb-mist), 0.34) 0%, transparent 70%),
-    var(--surface-tint-soft);
+    radial-gradient(48% 58% at 26% 46%, rgba(var(--rgb-mist), 0.42) 0%, transparent 72%),
+    var(--surface-ice);
 }
-
 .advanced__inner {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   align-items: center;
   gap: clamp(2rem, 1rem + 4vw, 5rem);
 }
 
 .advanced__visual {
   --float-duration: 13s;
-  max-width: 420px;
+  max-width: 480px;
   justify-self: center;
   padding: clamp(1rem, 2vw, 2rem);
   position: relative;
@@ -317,13 +410,38 @@
   position: absolute;
   top: 17%;
   left: 47%;
-  width: 30%;
+  z-index: var(--z-content);
+  width: 34%;
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(var(--rgb-orange), 0.26) 0%, transparent 66%);
-  filter: blur(10px);
+  background: radial-gradient(circle, rgba(var(--rgb-orange), 0.3) 0%, transparent 66%);
+  filter: blur(12px);
   pointer-events: none;
   animation: lantern 6s var(--ease-in-out) infinite;
+}
+
+/* Faisceau : un cône très pâle qui balaie lentement depuis la lanterne.
+   Volontairement à peine perceptible — c'est une lumière, pas un projecteur. */
+.advanced__visual::after {
+  content: '';
+  position: absolute;
+  top: 17%;
+  left: 47%;
+  width: 150%;
+  height: 34%;
+  transform-origin: 0% 50%;
+  background: linear-gradient(
+    90deg,
+    rgba(var(--rgb-orange), 0.16) 0%,
+    rgba(var(--rgb-mist), 0.12) 40%,
+    transparent 78%
+  );
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, transparent 85%);
+  mask-image: linear-gradient(90deg, #000 0%, transparent 85%);
+  clip-path: polygon(0 44%, 100% 0, 100% 100%, 0 56%);
+  filter: blur(8px);
+  pointer-events: none;
+  animation: beam 14s var(--ease-in-out) infinite;
 }
 
 @keyframes lantern {
@@ -336,8 +454,21 @@
   }
 }
 
+@keyframes beam {
+  0%,
+  100% {
+    transform: rotate(-7deg);
+    opacity: 0.55;
+  }
+  50% {
+    transform: rotate(6deg);
+    opacity: 0.95;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .advanced__visual::before {
+  .advanced__visual::before,
+  .advanced__visual::after {
     animation: none;
   }
 }
@@ -356,13 +487,19 @@
     text-align: left;
   }
   .advanced__visual {
-    max-width: 300px;
+    max-width: 320px;
   }
 }
 
 /* --------------------------------------------------------------------------
    05 · ALCANCE Y EXPERIENCIA
    -------------------------------------------------------------------------- */
+
+.experience {
+  background:
+    radial-gradient(40% 44% at 92% 20%, rgba(var(--rgb-mist), 0.24) 0%, transparent 72%),
+    var(--arctic-white);
+}
 
 .experience__head {
   margin-bottom: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
@@ -374,36 +511,46 @@
 .stats {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-4) clamp(2rem, 1rem + 4vw, 5rem);
+  gap: var(--sp-5) clamp(2rem, 1rem + 4vw, 5rem);
   margin: 0;
-  padding-top: var(--sp-4);
-  border-top: 1px solid var(--soft-gray);
+  padding-top: var(--sp-5);
+  border-top: 1px solid rgba(var(--rgb-coeus-blue), 0.14);
 }
 
+/* Les indicateurs se répartissent la rangée : `bindings.js` en retire ceux dont
+   le chiffre n'est pas encore fourni, la ligne doit rester équilibrée à 2, 3
+   ou 4 éléments. */
 .stat {
   position: relative;
-  flex: 0 1 auto;
-  min-width: 180px;
+  flex: 1 1 200px;
 }
+/* Diviseur pleine hauteur, dégradé aux deux extrémités : il structure la
+   rangée sans jamais se lire comme un trait de tableau. */
 .stat + .stat::before {
   content: '';
   position: absolute;
-  top: 0.4rem;
+  top: 0;
+  bottom: 0;
   left: clamp(-2.5rem, -0.5rem - 2vw, -1rem);
   width: 1px;
-  height: 3.2rem;
-  background: linear-gradient(180deg, rgba(var(--rgb-coeus-blue), 0.22), transparent);
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(var(--rgb-coeus-blue), 0.24) 22%,
+    rgba(var(--rgb-coeus-blue), 0.24) 68%,
+    transparent 100%
+  );
 }
 
 .stat__value {
   display: flex;
   align-items: baseline;
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.7rem;
   color: var(--coeus-blue);
   font-family: var(--font-display);
   font-size: var(--fs-counter);
-  line-height: 0.95;
-  letter-spacing: -0.01em;
+  line-height: 0.9;
+  letter-spacing: -0.015em;
   font-variant-numeric: tabular-nums;
 }
 
@@ -411,11 +558,16 @@
   color: var(--signal-orange-text);
 }
 
+/* Descripteur nettement plus petit et capitalisé : le contraste d'échelle avec
+   le chiffre est l'essentiel de l'effet recherché. */
 .stat__label {
+  max-width: 20ch;
   color: var(--graphite-gray);
-  font-size: var(--fs-small);
-  line-height: 1.45;
-  max-width: 22ch;
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  letter-spacing: var(--track-eyebrow);
+  line-height: 1.5;
+  text-transform: uppercase;
 }
 
 @media (max-width: 560px) {
@@ -435,10 +587,11 @@
 }
 
 .res-card {
+  --card-pad: clamp(1.5rem, 1.1rem + 1.2vw, 2.25rem);
   display: flex;
   flex-direction: column;
   gap: var(--sp-2);
-  padding: clamp(1.5rem, 1.1rem + 1.2vw, 2.25rem);
+  padding: var(--card-pad);
   color: inherit;
   overflow: hidden;
   position: relative;
@@ -447,11 +600,13 @@
     box-shadow var(--dur-mid) var(--ease-out),
     border-color var(--dur-mid) var(--ease-out);
 }
-/* Filet supérieur qui se remplit au survol — accent de direction visuelle. */
+/* Filet supérieur qui se remplit au survol — accent de direction visuelle.
+   Il passe au-dessus de l'illustration, d'où le z-index explicite. */
 .res-card::before {
   content: '';
   position: absolute;
   inset: 0 auto auto 0;
+  z-index: 2;
   width: 100%;
   height: 2px;
   background: var(--gradient-brand);
@@ -466,6 +621,19 @@
 }
 .res-card:hover::before {
   transform: scaleX(1);
+}
+
+/* Bandeau illustré en pleine largeur : il remonte dans le padding de la carte
+   et se fait rogner par le rayon de celle-ci (`overflow: hidden`). */
+.res-card__media {
+  display: block;
+  margin: calc(var(--card-pad) * -1) calc(var(--card-pad) * -1) var(--sp-1);
+  overflow: hidden;
+  border-bottom: 1px solid rgba(var(--rgb-coeus-blue), 0.12);
+  background: linear-gradient(160deg, #ffffff 0%, rgba(var(--rgb-mist), 0.42) 100%);
+}
+.res-card:hover .res-illu {
+  transform: scale(1.035);
 }
 
 .res-card__label {

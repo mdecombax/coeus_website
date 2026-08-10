@@ -15,8 +15,88 @@
     clamp(3rem, 2rem + 4vw, 5rem);
   overflow: hidden;
   background:
-    radial-gradient(55% 60% at 82% 25%, rgba(var(--rgb-mist), 0.34) 0%, transparent 70%),
+    /* Fondu final vers le blanc : sans lui, le halo Mist Blue serait tranché net
+       par le bas de la section et l'on verrait une arête horizontale. */
+    linear-gradient(180deg, transparent 58%, #ffffff 100%),
+    radial-gradient(52% 56% at 84% 22%, rgba(var(--rgb-mist), 0.44) 0%, transparent 70%),
+    radial-gradient(38% 40% at 6% 96%, rgba(var(--rgb-coeus-blue), 0.08) 0%, transparent 74%),
     var(--surface-tint-soft);
+}
+
+/* Variante des pages Soluciones : le symbole de marque occupe la moitié droite
+   du hero et devient le premier des deux éléments graphiques forts demandés
+   pour ces pages. Les copies restent intactes. */
+.page-hero--figure .page-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+}
+
+.page-hero__figure {
+  --float-duration: 12s;
+  width: min(100%, 400px);
+  justify-self: center;
+}
+/* Le faisceau du faro atteint le bord droit de son PNG : même fondu que sur le
+   Home pour que la coupure ne se voie pas. */
+.page-hero__figure--faro .symbol__img {
+  -webkit-mask-image: linear-gradient(90deg, #000 70%, transparent 99%);
+  mask-image: linear-gradient(90deg, #000 70%, transparent 99%);
+}
+
+@media (max-width: 900px) {
+  .page-hero--figure .page-hero__inner {
+    grid-template-columns: 1fr;
+  }
+  .page-hero__figure {
+    order: -1;
+    width: min(100%, 250px);
+    justify-self: start;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Filigrane de section
+   Second élément graphique fort des pages Soluciones : un symbole de marque
+   agrandi, très pâle et fondu par un masque radial. Aucun asset nouveau, aucun
+   texte ajouté.
+   -------------------------------------------------------------------------- */
+
+.section--watermarked {
+  position: relative;
+  overflow: hidden;
+}
+.section--watermarked > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.section-watermark {
+  position: absolute;
+  right: calc(var(--gutter) * -1.2);
+  bottom: -14%;
+  z-index: 0;
+  width: min(56vw, 640px);
+  opacity: 0.14;
+  pointer-events: none;
+  /* Le masque doit être entièrement transparent avant le bas de l'élément :
+     celui-ci déborde sous la section, qui le rognerait sinon en plein dégradé
+     et laisserait une coupure nette. */
+  -webkit-mask-image: radial-gradient(64% 52% at 44% 34%, #000 14%, transparent 72%);
+  mask-image: radial-gradient(64% 52% at 44% 34%, #000 14%, transparent 72%);
+}
+.section-watermark img {
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 720px) {
+  .section-watermark {
+    width: 90vw;
+    bottom: -6%;
+    opacity: 0.09;
+  }
 }
 
 .page-hero__particles {
@@ -333,13 +413,19 @@
   border-top: 1px solid var(--soft-gray);
 }
 
+/* Deux colonnes : le titre et son chapô à gauche, l'illustration de rubrique à
+   droite, la même que celle de la carte correspondante sur le Home. */
 .resource-section__head {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: end;
-  justify-content: space-between;
-  gap: var(--sp-2);
+  gap: 0.3rem var(--sp-4);
   margin-bottom: var(--sp-4);
+}
+
+.resource-section__head h2,
+.resource-section__head p {
+  grid-column: 1;
 }
 
 .resource-section__head h2 {
@@ -349,6 +435,30 @@
 .resource-section__head p {
   color: var(--graphite-gray);
   font-size: var(--fs-small);
+}
+
+.resource-section__figure {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  width: min(38vw, 250px);
+  overflow: hidden;
+  border: var(--glass-border);
+  border-radius: var(--radius);
+  background: linear-gradient(160deg, #ffffff 0%, rgba(var(--rgb-mist), 0.42) 100%);
+  box-shadow: var(--glass-shadow);
+}
+
+@media (max-width: 720px) {
+  .resource-section__head {
+    grid-template-columns: 1fr;
+  }
+  .resource-section__figure {
+    grid-column: 1;
+    grid-row: auto;
+    width: 100%;
+    margin-top: var(--sp-2);
+  }
 }
 
 /* --------------------------------------------------------------------------

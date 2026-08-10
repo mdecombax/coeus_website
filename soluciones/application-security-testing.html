@@ -50,6 +50,17 @@
   </head>
 
   <body>
+
+    <!-- Préchargeur : retiré par js/preloader.js dès que la page est utilisable.
+         Une animation de secours le fait disparaître même si le module échoue. -->
+    <div class="preloader" data-preloader aria-hidden="true">
+      <div class="preloader__mark">
+        <span class="preloader__ring"></span>
+        <span class="preloader__ring"></span>
+        <span class="preloader__core"></span>
+      </div>
+      <p class="preloader__word">Coeus</p>
+    </div>
     <a class="skip-link" href="#main">Ir al contenido principal</a>
 
     <!-- ====================================================================
@@ -193,8 +204,8 @@
     </div>
 
     <main id="main">
-      <section class="page-hero">
-        <div class="page-hero__particles symbol" data-particles data-density="46" aria-hidden="true">
+      <section class="page-hero page-hero--figure">
+        <div class="page-hero__particles symbol" data-particles data-density="26" aria-hidden="true">
           <canvas class="symbol__canvas"></canvas>
         </div>
 
@@ -205,14 +216,27 @@
     </ol>
 
         <div class="container page-hero__inner">
-          <p class="eyebrow">Soluciones</p>
-          <h1>Application Security Testing</h1>
-          <p class="lead">Incorporamos seguridad durante todo el ciclo de desarrollo para identificar vulnerabilidades desde las primeras etapas del software.</p>
+          <div class="page-hero__text">
+            <p class="eyebrow">Soluciones</p>
+            <h1>Application Security Testing</h1>
+            <p class="lead">Incorporamos seguridad durante todo el ciclo de desarrollo para identificar vulnerabilidades desde las primeras etapas del software.</p>
 
-          <div class="page-hero__actions">
-            <a class="btn btn--primary" href="../contacto.html">Conocer Application Security Testing <svg class="btn__arrow" width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
-            <a class="btn btn--secondary" href="#capacidades">Ver capacidades</a>
+            <div class="page-hero__actions">
+              <a class="btn btn--primary" href="../contacto.html">Conocer Application Security Testing <svg class="btn__arrow" width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+              <a class="btn btn--secondary" href="#capacidades">Ver capacidades</a>
+            </div>
           </div>
+
+          <div class="page-hero__figure symbol symbol--float"
+               data-particles data-density="40" data-parallax="22">
+            <canvas class="symbol__canvas" aria-hidden="true"></canvas>
+            <picture>
+              <source srcset="../img/optimized/dragon.webp" type="image/webp" />
+              <img class="symbol__img" src="../img/optimized/dragon.png"
+                   alt="Dragón Coeus: representación tecnológica de protección y fuerza ofensiva" width="1500" height="1000" fetchpriority="high" />
+            </picture>
+          </div>
+
         </div>
       </section>
 
@@ -235,7 +259,13 @@
         </div>
       </section>
 
-      <section class="section section--tint" id="capacidades">
+      <section class="section section--tint section--watermarked" id="capacidades">
+        <div class="section-watermark" aria-hidden="true">
+          <picture>
+            <source srcset="../img/optimized/faro.webp" type="image/webp" />
+            <img src="../img/optimized/faro.png" alt="" loading="lazy" />
+          </picture>
+        </div>
         <div class="container">
           <div class="section-head" data-reveal>
             <p class="eyebrow">Capacidades</p>

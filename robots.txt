@@ -2,6 +2,7 @@ User-agent: *
 Allow: /
 
 # Pages sans valeur pour l'indexation
+Disallow: /v1/
 Disallow: /404.html
 Disallow: /aviso-de-privacidad.html
 Disallow: /terminos-y-condiciones.html

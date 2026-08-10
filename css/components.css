@@ -38,15 +38,24 @@
 }
 
 .btn--primary {
-  background: var(--coeus-blue);
+  background: linear-gradient(135deg, var(--coeus-blue-light) 0%, var(--coeus-blue) 62%);
   color: var(--arctic-white);
-  box-shadow: 0 10px 26px rgba(var(--rgb-coeus-blue), 0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 10px 26px -8px rgba(var(--rgb-coeus-blue), 0.55);
 }
+/* Le halo passe par une `box-shadow` sans décalage plutôt que par un
+   pseudo-élément flouté : le `transform: translateY` du survol crée un contexte
+   d'empilement, et un enfant en `z-index: -1` repasserait alors par-dessus le
+   fond du bouton au lieu de rester derrière lui. */
 .btn--primary:hover {
-  background: var(--coeus-blue-light);
+  background: linear-gradient(135deg, #2472b6 0%, var(--coeus-blue-light) 62%);
   color: var(--arctic-white);
   transform: translateY(-2px);
-  box-shadow: 0 16px 34px rgba(var(--rgb-coeus-blue), 0.34);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    0 0 26px -2px rgba(var(--rgb-coeus-blue), 0.45),
+    0 18px 38px -10px rgba(var(--rgb-coeus-blue), 0.6);
 }
 .btn--primary:active {
   transform: translateY(0);
@@ -59,12 +68,19 @@
   backdrop-filter: blur(var(--glass-blur));
   border: var(--glass-border);
   color: var(--coeus-blue);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 10px 26px -16px rgba(var(--rgb-coeus-blue), 0.5);
 }
 .btn--secondary:hover {
   background: var(--glass-bg-strong);
   border: var(--glass-border-hover);
   color: var(--coeus-blue);
   transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    var(--glow-blue),
+    0 16px 32px -16px rgba(var(--rgb-coeus-blue), 0.55);
 }
 .btn--secondary:active {
   transform: translateY(0);
@@ -99,39 +115,65 @@
   pointer-events: none;
 }
 
-/* CTA circulaire WhatsApp — symbole du dragon (Guía §5) */
+/* Contrôles circulaires du header — LinkedIn, X et le CTA dragón (Guía §5).
+   Les trois partagent strictement le même disque glass : même diamètre, même
+   teinte, même bordure, même ombre. Seul le contenu change, et le dragón se
+   distingue par son anneau orange au survol puisqu'il porte le CTA. */
 /* Disque clair plutôt que plein bleu : en négatif, les contre-formes de la
    tête de dragon (l'œil notamment) s'inversent et le symbole devient illisible
-   à 46 px. Le dragon reste donc en Deep Blue sur fond glass. */
+   à cette taille. Le dragon reste donc en Deep Blue sur fond glass. */
+.icon-link,
 .btn-dragon {
   position: relative;
   display: inline-grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
+  width: var(--control-size);
+  height: var(--control-size);
   flex: none;
   border-radius: var(--radius-pill);
   background: var(--glass-bg-strong);
   -webkit-backdrop-filter: blur(var(--glass-blur));
   backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid rgba(var(--rgb-coeus-blue), 0.22);
-  box-shadow: 0 8px 22px rgba(var(--rgb-navy), 0.08);
+  border: 1px solid rgba(var(--rgb-coeus-blue), 0.2);
+  color: var(--coeus-blue);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 8px 20px -12px rgba(var(--rgb-coeus-blue), 0.5);
   transition:
     transform var(--dur-fast) var(--ease-out),
     box-shadow var(--dur-fast) var(--ease-out),
-    border-color var(--dur-fast) var(--ease-out);
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
 }
+.icon-link:hover,
+.btn-dragon:hover {
+  color: var(--coeus-blue);
+  border-color: rgba(var(--rgb-coeus-blue), 0.46);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    var(--glow-blue),
+    0 14px 26px -14px rgba(var(--rgb-coeus-blue), 0.6);
+}
+.btn-dragon:hover {
+  border-color: rgba(var(--rgb-orange), 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    var(--glow-orange),
+    0 14px 26px -14px rgba(var(--rgb-coeus-blue), 0.6);
+}
+
 .btn-dragon img {
-  width: 30px;
+  width: 28px;
   height: auto;
   /* Recentre optiquement la tête dans le disque : le museau tire vers la droite. */
   margin-left: -1px;
   pointer-events: none;
 }
-.btn-dragon:hover {
-  border-color: rgba(var(--rgb-coeus-blue), 0.5);
-  transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 12px 28px rgba(var(--rgb-coeus-blue), 0.22);
+
+.icon-link[aria-disabled='true'] {
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 /* --------------------------------------------------------------------------
@@ -151,6 +193,8 @@
    Header
    -------------------------------------------------------------------------- */
 
+/* Barre glass : légère en haut de page, elle se densifie et se compacte au
+   défilement (blur, teinte Mist Blue, liseré et ombre froide). */
 .header {
   position: fixed;
   inset: 0 0 auto;
@@ -158,21 +202,46 @@
   height: var(--header-h);
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.6);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.72) 0%,
+    rgba(255, 255, 255, 0.52) 100%
+  );
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
   border-bottom: 1px solid transparent;
   transition:
     height var(--dur-mid) var(--ease-out),
-    background-color var(--dur-mid) var(--ease-out),
+    background var(--dur-mid) var(--ease-out),
     border-color var(--dur-mid) var(--ease-out),
-    box-shadow var(--dur-mid) var(--ease-out);
+    box-shadow var(--dur-mid) var(--ease-out),
+    -webkit-backdrop-filter var(--dur-mid) var(--ease-out),
+    backdrop-filter var(--dur-mid) var(--ease-out);
 }
 .header.is-scrolled {
   height: calc(var(--header-h) - 12px);
-  background: rgba(255, 255, 255, 0.86);
-  border-bottom-color: rgba(var(--rgb-coeus-blue), 0.12);
-  box-shadow: 0 6px 26px rgba(var(--rgb-navy), 0.06);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(var(--rgb-mist), 0.34) 100%
+  );
+  -webkit-backdrop-filter: blur(26px) saturate(170%);
+  backdrop-filter: blur(26px) saturate(170%);
+  border-bottom-color: rgba(var(--rgb-coeus-blue), 0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 10px 30px -14px rgba(var(--rgb-coeus-blue), 0.4);
+}
+/* Les contrôles circulaires vivent déjà sur du verre : à l'intérieur d'un
+   header lui-même glass, leur propre fond doit s'alléger pour ne pas former
+   un deuxième voile blanc. */
+.header.is-scrolled .icon-link,
+.header.is-scrolled .btn-dragon {
+  background: rgba(255, 255, 255, 0.5);
+}
+.header.is-scrolled .icon-link:hover,
+.header.is-scrolled .btn-dragon:hover {
+  background: rgba(255, 255, 255, 0.78);
 }
 
 .header__inner {
@@ -298,25 +367,8 @@
   gap: var(--sp-1);
 }
 
-.icon-link {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border-radius: var(--radius-pill);
-  color: var(--midnight-navy);
-  transition:
-    color var(--dur-fast) var(--ease-out),
-    background-color var(--dur-fast) var(--ease-out);
-}
-.icon-link:hover {
-  color: var(--coeus-blue);
-  background: rgba(var(--rgb-coeus-blue), 0.08);
-}
-.icon-link[aria-disabled='true'] {
-  opacity: 0.35;
-  pointer-events: none;
-}
+/* Le style des trois contrôles circulaires est défini plus haut, avec les
+   boutons : LinkedIn, X et le dragón forment une seule série. */
 
 /* Burger + drawer mobile */
 /* Flex column plutôt que grid : les rangées de grille s'étirent sur la hauteur
@@ -543,20 +595,50 @@
 }
 
 .cap-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--sp-2);
   padding: clamp(1.5rem, 1.1rem + 1.2vw, 2.25rem);
+  overflow: hidden;
+  /* Contexte d'empilement local : la lueur ci-dessous est un descendant
+     positionné et repasserait sinon par-dessus le texte de la carte. */
+  isolation: isolate;
   color: inherit;
   transition:
     transform var(--dur-mid) var(--ease-out),
     box-shadow var(--dur-mid) var(--ease-out),
     border-color var(--dur-mid) var(--ease-out);
 }
+/* Lueur Mist Blue ancrée dans l'angle haut-droit : elle se révèle au survol et
+   donne à la carte sa profondeur sans ajouter d'aplat coloré au repos. */
+.cap-card::after {
+  content: '';
+  position: absolute;
+  inset: -40% -40% auto auto;
+  z-index: 0;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--rgb-mist), 0.55) 0%, transparent 68%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+.cap-card__icon,
+.cap-card__title,
+.cap-card__text,
+.cap-card__more {
+  position: relative;
+  z-index: 1;
+}
 .cap-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(var(--rgb-coeus-blue), 0.32);
+  transform: translateY(-5px);
+  border-color: rgba(var(--rgb-coeus-blue), 0.38);
   box-shadow: var(--glass-shadow-hover);
+}
+.cap-card:hover::after {
+  opacity: 1;
 }
 
 .cap-card__icon {
@@ -565,12 +647,47 @@
   width: 52px;
   height: 52px;
   border-radius: var(--radius-sm);
-  background: rgba(var(--rgb-coeus-blue), 0.07);
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(var(--rgb-mist), 0.5) 100%
+  );
+  border: 1px solid rgba(var(--rgb-coeus-blue), 0.14);
   color: var(--coeus-blue);
-  transition: background-color var(--dur-mid) var(--ease-out);
+  transition:
+    background var(--dur-mid) var(--ease-out),
+    border-color var(--dur-mid) var(--ease-out),
+    box-shadow var(--dur-mid) var(--ease-out);
+}
+/* Accent orange minimal : un point de 5 px, seule touche chaude de la carte. */
+.cap-card__icon::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--signal-orange);
+  box-shadow: 0 0 0 3px rgba(var(--rgb-orange), 0.16);
+  opacity: 0;
+  transform: scale(0.4);
+  transition:
+    opacity var(--dur-mid) var(--ease-out),
+    transform var(--dur-mid) var(--ease-out);
 }
 .cap-card:hover .cap-card__icon {
-  background: rgba(var(--rgb-coeus-blue), 0.13);
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(var(--rgb-mist), 0.78) 100%
+  );
+  border-color: rgba(var(--rgb-coeus-blue), 0.3);
+  box-shadow: var(--glow-blue);
+}
+.cap-card:hover .cap-card__icon::after {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .cap-card__title {
@@ -599,6 +716,54 @@
 }
 .cap-card:hover .cap-card__more svg {
   transform: translateX(4px);
+}
+
+/* --------------------------------------------------------------------------
+   Illustrations de rubrique (Blog · Noticias · Eventos)
+   Trois dessins au trait construits sur le même vocabulaire — rectangles à
+   coins arrondis, arcs concentriques hérités du faro, un unique accent orange.
+   Les primitives vivent ici plutôt que dans home.css : les mêmes dessins
+   servent au Home et à la page Recursos.
+   -------------------------------------------------------------------------- */
+
+.res-illu {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--coeus-blue);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+/* Arcs concentriques ancrés dans l'angle bas-droit : la signature commune. */
+.res-illu__arcs {
+  fill: none;
+  stroke: rgba(var(--rgb-coeus-blue), 0.18);
+  stroke-width: 1;
+}
+
+.res-illu__line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.5;
+}
+
+.res-illu__plate {
+  fill: rgba(255, 255, 255, 0.74);
+  stroke: rgba(var(--rgb-coeus-blue), 0.36);
+  stroke-width: 1.4;
+}
+
+.res-illu__fill {
+  fill: rgba(var(--rgb-mist), 0.55);
+  stroke: none;
+}
+
+.res-illu__accent {
+  fill: var(--signal-orange);
+  stroke: none;
 }
 
 /* --------------------------------------------------------------------------
@@ -678,5 +843,128 @@
 @media (prefers-reduced-motion: reduce) {
   .symbol--float .symbol__img {
     animation: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Micro-parallaxe au scroll
+   Appliquée au conteneur `.symbol`, jamais à `.symbol__img` : celui-ci porte
+   déjà l'animation de flottement, et les deux transforms se marcheraient
+   dessus. Le décalage vient de js/parallax.js via `--parallax-y`.
+   -------------------------------------------------------------------------- */
+
+.js [data-parallax] {
+  transform: translate3d(0, var(--parallax-y, 0px), 0);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-parallax] {
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Préchargeur
+   Bref, sans attente artificielle : js/preloader.js le retire dès que la page
+   est utilisable. L'animation `preloader-failsafe` garantit sa disparition même
+   si le module ES ne se charge pas — sans elle, un échec JS bloquerait le site.
+   -------------------------------------------------------------------------- */
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-preloader);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  background:
+    radial-gradient(60% 50% at 50% 45%, rgba(var(--rgb-mist), 0.42) 0%, transparent 70%),
+    var(--surface-tint-soft);
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    visibility 0s linear var(--dur-slow);
+  animation: preloader-failsafe 0s linear 3.5s forwards;
+}
+.preloader.is-done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Sans JavaScript, aucun voile : le contenu doit rester immédiatement lisible. */
+html:not(.js) .preloader {
+  display: none;
+}
+
+@keyframes preloader-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.preloader__mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+}
+
+/* Deux anneaux concentriques en expansion — un balayage radar, référence au
+   faro et à la veille permanente, sans recourir à un asset. */
+.preloader__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--rgb-coeus-blue), 0.4);
+  animation: preloader-pulse 1.6s var(--ease-out) infinite;
+}
+.preloader__ring:nth-child(2) {
+  animation-delay: 0.55s;
+}
+
+.preloader__core {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+  box-shadow: 0 0 0 6px rgba(var(--rgb-coeus-blue), 0.09);
+}
+
+.preloader__word {
+  margin: 0;
+  color: var(--coeus-blue);
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.42em;
+  /* Le letter-spacing ajoute un blanc après la dernière lettre : on le reprend
+     pour que le mot reste optiquement centré. */
+  text-indent: 0.42em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+@keyframes preloader-pulse {
+  0% {
+    transform: scale(0.34);
+    opacity: 0;
+  }
+  22% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader__ring {
+    animation: none;
+    opacity: 0.35;
   }
 }
